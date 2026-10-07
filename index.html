@@ -3,38 +3,38 @@
 	<head>
 			<meta charset="UTF-8"/>
 			<title>Adam Elfsborg</title>
-			<link rel="stylesheet" href="./stylesheets.css" />
+			<link rel="stylesheet" href="./css/global.css" />
 	</head>
 	<body>
 		<header>
 			<h1>Hej och välkommen</h1>
-			<p>Adam Elfsborg heter jag och går Datateknik här på Gävle campus</p>
+			<p>Adam Elfsborg heter jag och läser Datateknik här på Gävle campus :)</p>
 		</header>
 		<main>
-			<section>
-				<div id="Sammanfattning" >Sammanfattning</div>
-				<div><a href="./workshop">Workshop</a></div>
-				<div>Nyhet 3</div>
+			<section id="workshops">
+				<h2>Workshops</h2>
+				<div>
+					<div>
+						<a href="workshop/html/">HTML<a/>							
+					</div>
+					<div>
+						<a href="workshop/html/">CSS<a/>							
+					</div>
+					<div>
+						<a href="workshop/html/">JS<a/>							
+					</div>				
+				</div>
 			</section>
-			<aside>
-				<table>
-					<thead>
-						<tr>
-							<th>Innehåll</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><a href="#Sammanfattning"/>Sammanfattning</td>
-							<td>Ineldning</td>
-						</tr>
-					</tbody>
-				</table>
-			</aside>
+			
+			<section id="games">
+				<h2>Spel</h2>
+				<p id="question" >Medans du väntar på bättre tider, varför inte spela lite spel ?</p>
+				<div id="rock-paper-scissors" >
+					
+				</div>
+			</section>
+			
 		</main>
-		<footer>
-			Jag borde ligga längst ned på sidan
-		</footer>
-		<script src="./script.js"></script>
+		<script src="./js/main.js"></script>
 	</body>
 </html>

@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+	background-color: #fff;
+	color: #333;
+	font-family: Helvetica;
+	min-height: 100vh;
+}
+
+header {
+	background-color: #ddd;
+	padding: .5rem;
+	box-shadow: 0 4px 8px 0 #333;
+}
+
+section {
+	margin-top: 1rem;
+	line-height: 1.5;
+}
+
+section h2 {
+	text-align: center;
+}
+
+section#workshops div{
+	display: flex;
+	gap: 1rem;
+	justify-content: center;
+}
+
+section#workshops div div{
+	width: 10vw;
+	padding: 2rem;
+	background-color: #eee;
+	border-radius: 20px;
+	text-align: center;
+}
+
+section#games #question {
+	text-align: center;
+}
+
+
+h1 {
+	color: #222; /* Kommentar */
+}
