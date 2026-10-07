@@ -1,0 +1,7 @@
+* Webbsida
+Här kan man nu skriva saker som kan nås via
+[[https://www.student.hig.se/~25adel02/]].
+
+#+begin_code bash
+la -la
+#+end_code
