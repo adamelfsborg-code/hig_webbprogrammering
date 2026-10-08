@@ -4,46 +4,50 @@
 }
 
 body {
-	background-color: #fff;
-	color: #333;
-	font-family: Helvetica;
-	min-height: 100vh;
+  background-color: #fff;
+  color: #333;
+  font-family: Helvetica;
+  min-height: 100vh;
+}
+
+h1 {
+  color: #222; /* Kommentar */
 }
 
 header {
-	background-color: #ddd;
-	padding: .5rem;
-	box-shadow: 0 4px 8px 0 #333;
+  background-color: #ddd;
+  padding: 0.5rem;
+  box-shadow: 0 4px 8px 0 #333;
 }
 
 section {
-	margin-top: 1rem;
-	line-height: 1.5;
+  margin-top: 1rem;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  padding: 0.25rem 0.5rem;
+  box-shadow: 0 3px 2px 0px #333;
 }
 
 section h2 {
-	text-align: center;
+  text-align: center;
 }
 
-section#workshops div{
-	display: flex;
-	gap: 1rem;
-	justify-content: center;
+section#workshops div {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
 }
 
-section#workshops div div{
-	width: 10vw;
-	padding: 2rem;
-	background-color: #eee;
-	border-radius: 20px;
-	text-align: center;
+section#workshops div div {
+  width: 10vw;
+  padding: 2rem;
+  background-color: #eee;
+  border-radius: 20px;
+  text-align: center;
 }
 
-section#games #question {
-	text-align: center;
-}
-
-
-h1 {
-	color: #222; /* Kommentar */
-}
