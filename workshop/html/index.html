@@ -26,7 +26,11 @@
 	<body>
 		<div id="dummy"  style="background-color: #fff; position: sticky; top: 0; height: 20px; width: 80%; margin: 0 auto;" ></div>
 		<header style="position: sticky; top: 10px; background-color: #eee; color: #333; border-radius: 20px; padding: 1rem;">
-			<h1>Workshop - HTML</h1>
+      <hgroup>
+			  <h1>HTML</h1>
+        <p>En Workshop om HTML</p>
+      </hgroup>
+
 			<nav>
 				<ul>
 					<li> <a href="#" title="Hem" >Hem</a></li>
@@ -38,8 +42,10 @@
 		<main>
 		<!-- Semantiska element -->
 			<section style="height: 100vh" >
-				<h2>HTML</h2>
-				<p>Hyper Text Marcup Language</p>
+        <hgroup>
+				  <h2>HTML</h2>
+				  <p>Hyper Text Marcup Language</p>
+        </hgroup>
 			</section>
 			<section style="height: 100vh">
 				<h2>Vad är HTML?</h2>
@@ -136,12 +142,17 @@ placerat, pellentesque
 				<label for="födelsedag" >Födelsdag: </label>
 				<input type="date"  name="födelsedag" />
 
-				<p id="svar" ></p>
+        <dl>
+          <dt>Medverkare:</dt>
+          <dd><a href="https://github.com/adamelfsborg-code" >Github adamelfsborg-code</a><dd/>
+          <dt>Commit:</dt>
+          <dd><a href="https://github.com/adamelfsborg-code/hig_webbprogrammering/commit/89acaebc0bb9375fd59a6815319964bae83a7220">feat: workshop.html</a></dd>
+        </dl>
 
 			</section>
 			
 			<section id="form" >
-				<form name="my-form" id="my-form" action="http://gmcathig.se/webservice" method="POST">
+				<form name="my-form" id="my-form" action="/skicka" method="POST">
 					<label for="name" >Name</label>
 					<input  type="text" name="name" placeholder="Namn" />
 					<div>
@@ -156,16 +167,14 @@ placerat, pellentesque
 						<label for="password">Lösenord</label>
 						<input  type="password" name="password" placeholder="Lösenord" /> <br>
 						<label for="password">Återupprepa Lösenord</label>
-						<input  type="re-password" name="re-password" placeholder="Skriv ditt lösenord igen :)" />				
+						<input  type="password" name="re-password" placeholder="Skriv ditt lösenord igen :)" />				
 					</div>
-
-				
 				</form>
 			</section>
 			
 			
 			<section id="bg" style="height: 100vh; display: flex; justify-content: center; align-items: center;">
-				<label style="text-align:center;" >
+				<label style="text-align:center;">
 				<p>Ändra backgrundsfärg</p>
 				<input  name="färger" list="färger" type="color">
 				<datalist id="färger" >
