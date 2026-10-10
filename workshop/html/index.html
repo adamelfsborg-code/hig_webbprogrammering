@@ -1,196 +1,281 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sv">
-	<head>
-		<meta charset="UTF-8">
-		<title>HTML</title>
-		<style>
-			body {
-				font-family: Consolas, serif
-			}
-			
-			pre, code {
-				font-family: "Courier New", serif;
-			}
-			
-			main {
-				width: 70%;
-				margin: 0 auto;
-			}
-			
-			td {
-				border: 1px solid #111;
-			}
-			
-		</style>
-	</head>
-	<body>
-		<div id="dummy"  style="background-color: #fff; position: sticky; top: 0; height: 20px; width: 80%; margin: 0 auto;" ></div>
-		<header style="position: sticky; top: 10px; background-color: #eee; color: #333; border-radius: 20px; padding: 1rem;">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HTML</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Courier New", serif;
+      }
+
+      pre,
+      code {
+        font-family: "Courier New", serif;
+      }
+
+      td {
+        border: 1px solid #111;
+      }
+
+      header {
+        position: sticky;
+        top: 0px;
+        background-color: #eee;
+        color: #333;
+        border-radius: 0 0 5px 5px;
+        padding: 1rem;
+        box-shadow: 0 2px 4px 0px #333;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      ul {
+        display: flex;
+        gap: 1rem;
+        list-style: none;
+      }
+
+      section {
+        height: 100vh;
+        border-bottom: 1px dashed #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 1rem;
+      }
+
+      footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+        position: relative;
+      }
+
+      footer > .back-to-top {
+        position: absolute;
+        right: 50%;
+        top: -20px;
+        transform: translate(50%, -20px);
+      }
+    </style>
+  </head>
+  <body>
+    <header style="">
       <hgroup>
-			  <h1>HTML</h1>
+        <h1>HTML</h1>
         <p>En Workshop om HTML</p>
       </hgroup>
 
-			<nav>
-				<ul>
-					<li> <a href="#" title="Hem" >Hem</a></li>
-					<li> <a href="#bg" title="Vad är HTML?" > Byt bakgrundsfärg</a></li>
-					<li> <a href="https://html.spec.whatwg.org/multipage/" target="_blank" title="Hem" >Dokumentation</a></li>
-				</ul>
-			</nav>
-		</header>
-		<main>
-		<!-- Semantiska element -->
-			<section style="height: 100vh" >
+      <nav>
+        <ul>
+          <li><a href="#" title="Hem">Hem</a></li>
+          <li>
+            <a
+              href="https://html.spec.whatwg.org/multipage/"
+              target="_blank"
+              title="HTML Spec Whatwg"
+              >Dokumentation</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <!-- Semantiska element -->
+      <section>
         <hgroup>
-				  <h2>HTML</h2>
-				  <p>Hyper Text Marcup Language</p>
+          <h2>HTML</h2>
+          <p>Hyper Text Marcup Language</p>
         </hgroup>
-			</section>
-			<section style="height: 100vh">
-				<h2>Vad är HTML?</h2>
-				<p>Ett markup språk som användes för att ge struktur till hemsidor</p>
-			</section>
-			<section style="height: 100vh">
-				<h3>Oordnad lista - unordered</h3>
-				<ul>
-					<li>Punkt 1</li>
-					<li>Punkt 2</li>
-				</ul>
-				<h3>Ordnad lista</h3>
-				<ol>
-					<li>Punkt 1</li>
-					<li>Punkt 2</li>
-				</ol>
-			</section style="height: 100vh">
-			<section style="height: 100vh" >
-				<table>
-					<caption style="text-align: left;">
-						<p>Tabell 1: Detta är en tabelltext</p>
-					</caption>
-					<thead>
-						<tr>
-							<th>Table header</th>
-							<th>Kolumn 2</th>
-							<th>Kolumn 3</th>
-							<th>Kolumn 4</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Table Data</td>
-							<td>Cell R1K2</td>
-							<td>Cell R1L3</td>
-							<td rowspan="2" >Hejsan</td>
-						</tr>
-						<tr>
-							<td>Table Data</td>
-							<td colspan="2">Cell R1K2</td>
-							
-						</tr>
-						<tr>
-							<td colspan="3">Table Data</td>
-							<td>Cell R1L3</td>
-						</tr>
-						<tr>
-							<td colspan="4">Table Data</td>
-						</tr>
-					</tbody>
-					<tfoot>
-						<tr>
-							<th colspan="3" style="text-align: left;" >Total</th>
-							<td>10 kr</td>
-						</tr>
-					</tfoot>
-				</table>
-			</section>
-			<section style="height: 100vh">
-				<h2>Detta är en mycket intressant artikel!</h2>
-				<article>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eu lorem vel felis hendrerit finibus. Etiam elementum maximus maximus. Nunc rhoncus, ex tristique malesuada lobortis, sem lectus tempor metus, ac ullamcorper dolor urna et magna. Mauris vel ligula id lectus auctor accumsan. Mauris sit amet purus sed eros pulvinar feugiat eget et eros. Pellentesque molestie dui urna. Donec consectetur dolor elit, vel ullamcorper justo volutpat nec. Donec ultricies velit sed ipsum condimentum, eu sagittis nisl iaculis.
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at quam interdum, aliquet sem ac, varius eros. Sed eleifend tortor sed ornare fermentum. Quisque sit amet nibh varius, rhoncus orci et, fringilla arcu. Nullam ac vestibulum est. Etiam eleifend, nibh at feugiat sollicitudin, risus ex convallis nulla, vel maximus diam dolor at lacus. Duis sed venenatis orci, quis aliquam tellus. Proin sollicitudin neque eget lacus sollicitudin lacinia. Integer porta dapibus lacus nec accumsan. Nullam erat quam, posuere ut urna eu, porta placerat enim. Praesent sed maximus nisl, porttitor consectetur enim. Nam malesuada sagittis venenatis. Donec libero velit, porttitor elementum aliquet et, euismod eget leo.
-					<pre>
-Donec dignissim non leo id pellentesque. 
-Fusce ac molestie felis. 
-Vestibulum pulvinar nulla at enim placerat dictum. 
-Curabitur laoreet mi non pulvinar convallis. Sed pretium, lacus sit 
+      </section>
+      <section>
+        <hgroup>
+          <h2>Vad är HTML?</h2>
+          <p>Ett markup språk som användes för att ge struktur till hemsidor</p>
+        </hgroup>
+      </section>
+      <section>
+        <h3>Oordnad lista - unordered</h3>
+        <ul>
+          <li>Punkt 1</li>
+          <li>Punkt 2</li>
+        </ul>
+        <h3>Ordnad lista</h3>
+        <ol>
+          <li>Punkt 1</li>
+          <li>Punkt 2</li>
+        </ol>
+      </section>
+      <section>
+        <table>
+          <caption style="text-align: left">
+            <p>Tabell 1: Detta är en tabelltext</p>
+          </caption>
+          <thead>
+            <tr>
+              <th>Table header</th>
+              <th>Kolumn 2</th>
+              <th>Kolumn 3</th>
+              <th>Kolumn 4</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Table Data</td>
+              <td>Cell R1K2</td>
+              <td>Cell R1L3</td>
+              <td rowspan="2">Hejsan</td>
+            </tr>
+            <tr>
+              <td>Table Data</td>
+              <td colspan="2">Cell R1K2</td>
+            </tr>
+            <tr>
+              <td colspan="3">Table Data</td>
+              <td>Cell R1L3</td>
+            </tr>
+            <tr>
+              <td colspan="4">Table Data</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th colspan="3" style="text-align: left">Total</th>
+              <td>10 kr</td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+      <section>
+        <h2>Detta är en mycket intressant artikel!</h2>
+        <article>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eu
+          lorem vel felis hendrerit finibus. Etiam elementum maximus maximus.
+          Nunc rhoncus, ex tristique malesuada lobortis, sem lectus tempor
+          metus, ac ullamcorper dolor urna et magna. Mauris vel ligula id lectus
+          auctor accumsan. Mauris sit amet purus sed eros pulvinar feugiat eget
+          et eros. Pellentesque molestie dui urna. Donec consectetur dolor elit,
+          vel ullamcorper justo volutpat nec. Donec ultricies velit sed ipsum
+          condimentum, eu sagittis nisl iaculis. Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Quisque at quam interdum, aliquet sem ac,
+          varius eros. Sed eleifend tortor sed ornare fermentum. Quisque sit
+          amet nibh varius, rhoncus orci et, fringilla arcu. Nullam ac
+          vestibulum est. Etiam eleifend, nibh at feugiat sollicitudin, risus ex
+          convallis nulla, vel maximus diam dolor at lacus. Duis sed venenatis
+          orci, quis aliquam tellus. Proin sollicitudin neque eget lacus
+          sollicitudin lacinia. Integer porta dapibus lacus nec accumsan. Nullam
+          erat quam, posuere ut urna eu, porta placerat enim. Praesent sed
+          maximus nisl, porttitor consectetur enim. Nam malesuada sagittis
+          venenatis. Donec libero velit, porttitor elementum aliquet et, euismod
+          eget leo.
 
-amet venenatis viverra, magna massa 
-maximus leo, sed pretium ante tortor varius nibh. Nulla et sem 
-placerat, pellentesque 
-		lectus at, consequat orci. Lorem ipsum dolor sit amet, 
-		consectetur adipiscing elit. 
-		Cras rhoncus hendrerit augue, vel dictum dui 
-			tincidunt sit amet. Nunc auctor 
-				interdum sapien, at accumsan 
-	leo sodales ac. In vulputate sit amet dui et 
+          <pre>
+            <code>
+              const name = "Adam Elfsborg"
+            </code>
 					</pre>
-					<pre>
-<code>
-	const name = "Adam Elfsborg"
-</code>
-					</pre>
-				</article>	
-			</section>
-			
-				
-			
-			<section style="height: 100vh" id="födelsedag" >
-				
-				<label for="namn" >Namn:</label>
-				<input type="text" id='namn' name="namn" placeholder="Skriv in ditt namn :)" />
-				<label for="födelsedag" >Födelsdag: </label>
-				<input type="date"  name="födelsedag" />
+        </article>
+      </section>
 
+      <section>
+        <label for="namn">Namn:</label>
+        <input
+          type="text"
+          id="namn"
+          name="namn"
+          placeholder="Skriv in ditt namn :)"
+        />
+        <label for="födelsedag">Födelsdag: </label>
+        <input type="date" name="födelsedag" />
+      </section>
+
+      <section id="form">
+        <form name="my-form" id="my-form" action="/skicka" method="POST">
+          <label for="name">Name</label>
+          <input type="text" name="name" placeholder="Namn" />
+          <div>
+            <label for="man">Man</label>
+            <input type="radio" name="kön" id="man" value="Man" />
+            <label for="woman">Kvinna</label>
+            <input type="radio" name="kön" id="woman" value="Kvinna" />
+            <label for="other">Annat</label>
+            <input type="radio" name="kön" id="other" value="Annat" />
+          </div>
+          <div>
+            <label for="password">Lösenord</label>
+            <input type="password" name="password" placeholder="Lösenord" />
+            <br />
+            <label for="password">Återupprepa Lösenord</label>
+            <input
+              type="password"
+              name="re-password"
+              placeholder="Skriv ditt lösenord igen :)"
+            />
+          </div>
+        </form>
+      </section>
+
+      <section id="bg">
+        <label style="text-align: center">
+          <p>Ändra backgrundsfärg</p>
+          <input name="färger" list="färger" type="color" />
+          <datalist id="färger">
+            <option value="#e1ff00" />
+            <option value="#00ff9d" />
+            <option value="#ffffff" />
+          </datalist>
+        </label>
+      </section>
+    </main>
+    <footer>
+      <div style="display: flex; justify-content: space-between; width: 100%">
         <dl>
-          <dt>Medverkare:</dt>
-          <dd><a href="https://github.com/adamelfsborg-code" >Github adamelfsborg-code</a><dd/>
-          <dt>Commit:</dt>
-          <dd><a href="https://github.com/adamelfsborg-code/hig_webbprogrammering/commit/89acaebc0bb9375fd59a6815319964bae83a7220">feat: workshop.html</a></dd>
+          <dt>Författare:</dt>
+          <dd>
+            <a href="https://github.com/adamelfsborg-code"
+              >Github adamelfsborg-code</a
+            >
+          </dd>
+          <dd />
+          <dt>Repo:</dt>
+          <dd>
+            <a
+              href="https://github.com/adamelfsborg-code/hig_webbprogrammering/"
+              >Hig Webbprogrammering</a
+            >
+          </dd>
         </dl>
 
-			</section>
-			
-			<section id="form" >
-				<form name="my-form" id="my-form" action="/skicka" method="POST">
-					<label for="name" >Name</label>
-					<input  type="text" name="name" placeholder="Namn" />
-					<div>
-						<label for="man" >Man</label>
-						<input type="radio" name="kön" id="man" value="Man"/>
-						<label for="woman" >Kvinna</label>
-						<input type="radio" name="kön" id="woman" value="Kvinna" />
-						<label for="other" >Annat</label>
-						<input type="radio" name="kön" id="other" value="Annat" />
-					</div>
-					<div>
-						<label for="password">Lösenord</label>
-						<input  type="password" name="password" placeholder="Lösenord" /> <br>
-						<label for="password">Återupprepa Lösenord</label>
-						<input  type="password" name="re-password" placeholder="Skriv ditt lösenord igen :)" />				
-					</div>
-				</form>
-			</section>
-			
-			
-			<section id="bg" style="height: 100vh; display: flex; justify-content: center; align-items: center;">
-				<label style="text-align:center;">
-				<p>Ändra backgrundsfärg</p>
-				<input  name="färger" list="färger" type="color">
-				<datalist id="färger" >
-					<option value="#e1ff00" />
-					<option value="#00ff9d" />
-					<option value="#ffffff" />
-				</datalist>
-				</label>
-			</section>
-		</main>
-		<footer>
-		
-		</footer>
-	</body>
-	<script>
-		
-	</script>
-	<script rel="script" src="./script.js"></script>
+        <dl>
+          <dt>Email:</dt>
+          <dd>
+            <a href="https://github.com/adamelfsborg-code"
+              >adamelfsborg.dev@gmail.com</a
+            >
+          </dd>
+          <dd />
+          <dt>Nummber:</dt>
+          <dd>
+            <a
+              href="https://github.com/adamelfsborg-code/hig_webbprogrammering/"
+              >+46 0730207042</a
+            >
+          </dd>
+        </dl>
+      </div>
+      <a href="#" class="back-to-top">Tillbaka till topppen :)</a>
+    </footer>
+  </body>
+  <script></script>
+  <script rel="script" src="./script.js"></script>
 </html>
