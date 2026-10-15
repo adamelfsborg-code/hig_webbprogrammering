@@ -26,4 +26,3 @@ const isHex = (str) => {
 
   return true;
 };
-
