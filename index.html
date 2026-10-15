@@ -1,31 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-	<head>
-			<meta charset="UTF-8"/>
-			<title>Adam Elfsborg</title>
-			<link rel="stylesheet" href="./styles.css" />
-	</head>
-	<body>
-		<header>
-			<h1>Hej och välkommen</h1>
-			<p>Adam Elfsborg heter jag och läser Datateknik här på Gävle campus :)</p>
-		</header>
-		<main>
-			<section id="workshops">
-				<h2>Workshops</h2>
-				<div>
-					<div>
-						<a href="workshop/html/">HTML<a/>							
-					</div>
-					<div>
-						<a href="workshop/html/">CSS<a/>							
-					</div>
-					<div>
-						<a href="workshop/html/">JS<a/>							
-					</div>				
-				</div>
-			</section>
-		</main>
-		<script src="./script.js"></script>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Adam Elfsborg</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.css"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/workshop/" class="active">~/README.md</li>
+          <li><a href="/workshop/">~/workshops</a></li>
+          <li><a href="/workshop/">~/labbar</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="hero-section">
+        <article class="text-editor">
+          <aside class="text-editor-sidebar">
+            <h2>Explorer</h2>
+            <details open>
+              <summary>workshops</summary>
+              <details open>
+                <summary>html</summary>
+                <a class="file" data-ext="html">index.html</a>
+              </details>
+            </details>
+            <a class="file" data-ext="git">.gitignore</a>
+            <a class="file active" data-ext="md">.README.md</a>
+          </aside>
+          <header class="text-editor-toolbar">
+            <nav>
+              <ul>
+                <li><a href="#" class="active">README.md</a></li>
+                <li><a href="#">.gitignore</a></li>
+              </ul>
+            </nav>
+          </header>
+          <pre class="text-editor-workspace" data-text-editor-workspace></pre>
+          <div class="text-editor-preview-wrapper">
+            <div class="text-editor-preview-banner">
+              <h2>Preview</h2>
+            </div>
+            <pre class="text-editor-preview" data-text-editor-preview></pre>
+          </div>
+          <footer class="text-editor-drawer">
+            <h2>Terminal</h2>
+            <ul>
+              <li>Server is up and running on port: 8080</li>
+            </ul>
+          </footer>
+        </article>
+      </section>
+    </main>
+    <script src="./script.js"></script>
+  </body>
 </html>
