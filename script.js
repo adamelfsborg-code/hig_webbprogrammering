@@ -47,10 +47,12 @@ const typeMarkdownInTextEditor = async (lines) => {
       }
     }
 
+    let typed = "";
     for (let i = 0; i < line.length; i++) {
       workspaceHTML.textContent += line[i];
       if (i >= prefix.length) {
-        el.textContent += line[i];
+        typed += line[i];
+        el.innerHTML = inline(typed);
       }
       if (container) {
         previewHTML.append(container);
@@ -64,4 +66,10 @@ const typeMarkdownInTextEditor = async (lines) => {
     await wait(100);
   }
 };
+
+function inline(text) {
+  return text
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*(.+?)\*/g, "<em>$1</em>");
+}
 
