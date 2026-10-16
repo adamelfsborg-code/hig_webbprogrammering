@@ -57,6 +57,7 @@ const typeMarkdownInTextEditor = async (lines) => {
       } else {
         previewHTML.append(el);
       }
+
       await wait(10 + Math.random() * 60);
     }
     workspaceHTML.textContent += "\n";
