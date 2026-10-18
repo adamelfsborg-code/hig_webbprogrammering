@@ -1,0 +1,244 @@
+:root {
+  /*ACCENT*/
+  --primary-accent-color: #f9660f;
+  --hover-accent-color: #fce8dc;
+
+  /*BG*/
+  --primary-background-color: #f8f5ef;
+  --secondary-background-color: #f0ece8;
+  --surface-background-color: #fdfcf9;
+
+  /*TEXT*/
+  --large-heading-color: #111418;
+  --body-text-color: #3a3c42;
+  --muted-text-color: #7c7b7c;
+
+  /*Annat*/
+  --border-color: #ece8e4;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Open sans", sans-serif;
+  background-color: var(--background-color);
+  padding: 2rem 4rem 0rem 4rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header img {
+  width: 64px;
+  height: auto;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+header nav ul li a {
+  text-decoration: none;
+  color: var(--accent-color);
+}
+
+header nav ul li a:hover {
+  font-weight: bold;
+}
+
+header button {
+  background-color: var(--primary-accent-color);
+  color: var(--primary-background-color);
+  border: 1px solid var(--primary-accent-color);
+  padding: 4px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* HERO SECTION */
+
+.hero-section {
+  height: calc(100vh - 64px - 4rem);
+  display: grid;
+  grid-template-areas:
+    "text img"
+    "arrow img";
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 1fr;
+  overflow: hidden;
+}
+
+.hero-section hgroup {
+  grid-area: text;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.hero-section img {
+  grid-area: img;
+  width: 100%;
+  object-fit: contain;
+}
+
+.hero-section a {
+  grid-area: arrow;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2em;
+  color: var(--large-heading-color);
+  text-decoration: none;
+}
+
+.hero-section a:hover {
+  animation: grow ease-in 0.5s;
+  font-size: 3em;
+}
+
+@keyframes grow {
+  from {
+    font-size: 2em;
+  }
+  to {
+    font-size: 3em;
+  }
+}
+
+.hero-section h1 {
+  font-size: 3em;
+}
+
+.hero-section p {
+  line-height: 1.5;
+  font-size: 1.25em;
+}
+
+.hero-section h1 span {
+  color: var(--primary-accent-color);
+}
+
+/* ZIGZAG */
+
+.zigzag {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  flex-direction: column;
+}
+
+.zigzag > * {
+  display: flex;
+}
+
+.zigzag > *:nth-child(odd) {
+  flex-direction: row;
+}
+
+.zigzag > *:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+/* FEATURES */
+
+.features {
+  padding-top: 2rem;
+}
+
+.features > article {
+  gap: 2rem;
+}
+
+.features > h2 {
+  font-size: 2em;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.features article > article {
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10rem;
+  border-radius: 0.5em;
+}
+
+.features article img {
+  max-height: 40vh;
+  object-fit: contain;
+}
+
+.features > article > article:nth-child(odd) {
+  background-color: var(--secondary-background-color);
+}
+
+.features > article > article:nth-child(even) {
+  background-color: var(--primary-accent-color);
+}
+
+.features > article h2 {
+  color: var(--large-heading-color);
+}
+
+.features > article p {
+  color: var(--body-text-color);
+}
+
+/* NEWSLETTER */
+
+.newsletter {
+  width: 30vw;
+  margin: 2rem auto;
+}
+
+.newsletter form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 2rem;
+}
+
+.newsletter input {
+  padding: 0.5rem;
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--body-text-color);
+  background-color: var(--surface-background-color);
+  border: 1px solid var(--muted-text-color);
+}
+
+.newsletter button {
+  background-color: var(--primary-accent-color);
+  color: var(--primary-background-color);
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--primary-accent-color);
+  cursor: pointer;
+}
+
+/* COPYRIGHTS */
+
+footer .copyrights {
+  background-color: var(--secondary-background-color);
+  text-align: center;
+  padding: 1rem;
+  border-radius: 0.5em;
+}

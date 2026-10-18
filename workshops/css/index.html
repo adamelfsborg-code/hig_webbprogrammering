@@ -7,25 +7,99 @@
     <title>Workshop - CSS</title>
   </head>
   <body>
-    <header>
+    <div class="container">
+      <header>
+        <img src="./hig-logo.png" alt="logo" />
+      </header>
       <nav>
-        <ul>
-          <li>
-            <a href="../../">~/README.md</a>
-          </li>
-          <li><a href="../">~/workshops</a></li>
-          <li><a href="/" class="active">~/workshops/css</a></li>
-          <li><a href="/">~/laborationer</a></li>
-        </ul>
+        <a href="https://www.hig.se" target="_blank">Hig</a>
+        <a href="" target="_blank">UU</a>
+        <a href="https://www.hig.se" target="_blank">gmc@hig</a>
+        <a href="https://gmcathig.se" target="_blank">gmc@hig.se</a>
       </nav>
-    </header>
-    <main>
-      <section class="hero-section">
-        <hgroup>
-          <h2>CSS</h2>
-          <p>Cascading Style Sheets</p>
-        </hgroup>
-      </section>
-    </main>
+      <main>
+        main
+        <section>
+          section
+          <article>Artickel 1</article>
+          <article>
+            <div>
+              <p>
+                There are many variations of passages of Lorem Ipsum available,
+                but the majority have suffered alteration in some form, by
+                injected humour, or randomised words which don't look even
+                slightly believable. If you are going to use a passage of Lorem
+                Ipsum, you
+              </p>
+              <p>
+                There are many variations of passages of Lorem Ipsum available,
+                but the majority have suffered alteration in some form, by
+                Ipsum, you
+              </p>
+
+              <div class="james-mosley">
+                <p>
+                  but the majority have suffered alteration in some form, by
+                  Ipsum, you
+                </p>
+              </div>
+            </div>
+            <div>
+              <pre>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  border: 1px solid #330022;
+  background-color: #aaa;
+  padding: 0.5em;
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.container > * {
+  background-color: #eee;
+  margin-top: 0.5em;
+}
+              </pre>
+            </div>
+            <div class="layers">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <div>
+              <pre>
+.layers {
+  position: relative;
+}
+
+.layers > div {
+  width: 100px;
+  height: 100px;
+  border: 2px solid red;
+  z-index: calc(sibling-index() + 1);
+  position: absolute;
+  top: calc(sibling-index() * 60px);
+  left: calc(sibling-index() * 40px);
+  background-color: rgb(0, 0, 0);
+}
+              </pre>
+            </div>
+          </article>
+        </section>
+      </main>
+      <footer>footer</footer>
+    </div>
   </body>
 </html>
