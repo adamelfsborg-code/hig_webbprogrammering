@@ -35,7 +35,10 @@
               råvaror från din matbutik
             </p>
           </hgroup>
-          <img src="images/foodfinder-hero.webp" />
+          <img
+            src="images/foodfinder-hero.webp"
+            alt="En bild på FoodFinder appen"
+          />
           <a href="#features">
             <i class="fa-solid fa-angles-down"></i>
           </a>
@@ -46,37 +49,49 @@
           <div class="zigzag">
             <article>
               <hgroup>
-                <h2>Planera</h2>
+                <h3>Planera</h3>
                 <p>Hela veckans måltider</p>
               </hgroup>
-              <img src="images/foodfinder-1-planera.png" />
+              <img
+                src="images/foodfinder-1-planera.png"
+                alt="Bild på planera-funktionen"
+              />
             </article>
             <article>
               <hgroup>
-                <h2>Svep</h2>
+                <h3>Svep</h3>
                 <p>På recept utefter dina preferenser</p>
               </hgroup>
-              <img src="images/foodfinder-2-svep-recept.png" />
+              <img
+                src="images/foodfinder-2-svep-recept.png"
+                alt="Bild på svep-funktionen"
+              />
             </article>
             <article>
               <hgroup>
-                <h2>Ingredienser</h2>
+                <h3>Ingredienser</h3>
                 <p>Som behövs och finns hos din närmasta butik</p>
               </hgroup>
-              <img src="images/foodfinder-3-inkopslista.png" />
+              <img
+                src="images/foodfinder-3-inkopslista.png"
+                alt="Bild på ingrediens-funktionen"
+              />
             </article>
             <article>
               <hgroup>
-                <h2>Leverans</h2>
+                <h3>Leverans</h3>
                 <p>Direkt till din hemmadörr eller handla själv</p>
               </hgroup>
-              <img src="images/foodfinder-4-leverans.png" />
+              <img
+                src="images/foodfinder-4-leverans.png"
+                alt="Bild på leverans-funktionen"
+              />
             </article>
           </div>
         </section>
         <section id="popular-recipes">
           <h2>Populära Recept</h2>
-          <div class="info-cards">
+          <div class="recipe-cards">
             <article class="recipe-card">
               <img
                 src="./images/foodfinder-recept-1.png"
@@ -85,7 +100,7 @@
               <div>
                 <h3>Krämig pasta med grillad kyckling</h3>
                 <p>
-                  Krämig pasta med grillad kyckling, spenat, körbärstomater,
+                  Krämig pasta med grillad kyckling, spenat, körsbärstomater,
                   basilika och riven parmesan
                 </p>
                 <button type="button">Spara</button>
@@ -108,7 +123,7 @@
             <article class="recipe-card">
               <img
                 src="./images/foodfinder-recept-3.png"
-                alt="Indisk Butter chicken"
+                alt="Indisk butter chicken"
               />
               <div>
                 <h3>Indisk butter chicken</h3>
@@ -120,102 +135,81 @@
         </section>
       </main>
       <footer>
-        <section id="contact" class="info-cards">
-          <article class="contact">
-            <hgroup>
-              <h2>Kontakta oss</h2>
-              <p>Vi svarar inom en arbetsdag</p>
-            </hgroup>
-            <form method="post" action="/">
-              <div class="row">
-                <div class="col">
-                  <label for="first-name" class="block">Förnamn</label>
-                  <input
-                    id="first-name"
-                    type="text"
-                    name="first-name"
-                    placeholder="Fyll in ditt förnamn"
-                  />
-                </div>
-                <div class="col">
-                  <label for="last-name" class="block">Efternamn</label>
-                  <input
-                    id="last-name"
-                    type="text"
-                    name="last-name"
-                    placeholder="Fyll in ditt efternamn"
-                  />
-                </div>
+        <section id="contact" class="contact">
+          <h2>Kontakta oss</h2>
+          <form method="post" action="/">
+            <div class="row">
+              <div class="col">
+                <label for="first-name">Förnamn</label>
+                <input
+                  id="first-name"
+                  type="text"
+                  name="first-name"
+                  placeholder="Fyll in ditt förnamn"
+                />
               </div>
-              <div class="row">
-                <div class="col">
-                  <label for="email" class="block">E-post</label>
-                  <input
-                    id="email"
-                    type="email"
-                    name="email"
-                    placeholder="Fyll in din e-postaddress"
-                  />
-                </div>
+              <div class="col">
+                <label for="last-name">Efternamn</label>
+                <input
+                  id="last-name"
+                  type="text"
+                  name="last-name"
+                  placeholder="Fyll in ditt efternamn"
+                />
               </div>
-              <div class="row">
-                <div class="col">
-                  <fieldset>
-                    <legend>Välj ålder</legend>
-                    <div>
-                      <input
-                        id="below-20"
-                        type="radio"
-                        name="age"
-                        value="below-20"
-                      />
-                      <label for="below-20">Under 20 år</label>
-                    </div>
-                    <div>
-                      <input
-                        id="between-20-40"
-                        type="radio"
-                        name="age"
-                        value="between-20-40"
-                      />
-                      <label for="between-20-40">Mellan 20 och 40 år</label>
-                    </div>
-                    <div>
-                      <input
-                        id="over-20"
-                        type="radio"
-                        name="age"
-                        value="over-20"
-                      />
-                      <label for="over-20">Över 20 år</label>
-                    </div>
-                  </fieldset>
-                </div>
-                <div class="col">
-                  <label for="message" class="block">Meddelande</label>
-                  <textarea id="message" name="message"></textarea>
-                </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <label for="email">E-post</label>
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  placeholder="Fyll in din e-postadress"
+                />
               </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <fieldset>
+                  <legend>Välj ålder</legend>
+                  <div>
+                    <input
+                      id="below-20"
+                      type="radio"
+                      name="age"
+                      value="below-20"
+                    />
+                    <label for="below-20">Under 20 år</label>
+                  </div>
+                  <div>
+                    <input
+                      id="between-20-40"
+                      type="radio"
+                      name="age"
+                      value="between-20-40"
+                    />
+                    <label for="between-20-40">Mellan 20 och 40 år</label>
+                  </div>
+                  <div>
+                    <input
+                      id="over-20"
+                      type="radio"
+                      name="age"
+                      value="over-20"
+                    />
+                    <label for="over-20">Över 40 år</label>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="col">
+                <label for="message">Meddelande</label>
+                <textarea id="message" name="message"></textarea>
+              </div>
+            </div>
 
-              <button type="button">Skicka</button>
-            </form>
-          </article>
-          <article class="newsletter">
-            <hgroup>
-              <h2>Prenumerera på vårt nyhetsbrev</h2>
-              <p>Och få gratis hemleverans</p>
-            </hgroup>
-            <form method="post" action="/">
-              <label for="email">E-post</label>
-              <input
-                id="email"
-                type="email"
-                name="email"
-                placeholder="Fyll in din e-postaddress"
-              />
-              <button type="button">Prenumerera</button>
-            </form>
-          </article>
+            <button type="button">Skicka</button>
+          </form>
         </section>
         <section class="copyrights">
           <p>Copyright © 2026 FoodFinder AB</p>
