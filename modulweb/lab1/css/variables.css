@@ -1,0 +1,21 @@
+:root {
+  /*ACCENT*/
+  --primary-accent-color: #f9660f;
+  --hover-accent-color: #fce8dc;
+
+  /*BG*/
+  --primary-background-color: #f8f5ef;
+  --secondary-background-color: #f0ece8;
+  --surface-background-color: #fdfcf9;
+
+  /*TEXT*/
+  --large-heading-color: #111418;
+  --body-text-color: #3a3c42;
+  --muted-text-color: #7c7b7c;
+
+  /*Annat*/
+  --border-color: #ece8e4;
+
+  /*  */
+  --on-primary-color: var(--large-heading-color);
+}

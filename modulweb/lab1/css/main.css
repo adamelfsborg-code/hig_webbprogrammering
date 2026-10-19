@@ -1,21 +1,6 @@
-:root {
-  /*ACCENT*/
-  --primary-accent-color: #f9660f;
-  --hover-accent-color: #fce8dc;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap");
 
-  /*BG*/
-  --primary-background-color: #f8f5ef;
-  --secondary-background-color: #f0ece8;
-  --surface-background-color: #fdfcf9;
-
-  /*TEXT*/
-  --large-heading-color: #111418;
-  --body-text-color: #3a3c42;
-  --muted-text-color: #7c7b7c;
-
-  /*Annat*/
-  --border-color: #ece8e4;
-}
+@import "variables.css";
 
 * {
   margin: 0;
@@ -31,6 +16,28 @@ body {
   font-family: "Open sans", sans-serif;
   background-color: var(--background-color);
   padding: 2rem 4rem 0rem 4rem;
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 120rem;
+  margin-inline: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+h7 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+p,
+button,
+a {
+  font-family: "Inter", sans-serif;
 }
 
 header {
@@ -60,12 +67,12 @@ header nav ul li a {
 }
 
 header nav ul li a:hover {
-  font-weight: bold;
+  transform: scale(1, 2);
 }
 
 header button {
   background-color: var(--primary-accent-color);
-  color: var(--primary-background-color);
+  color: var(--on-primary-color);
   border: 1px solid var(--primary-accent-color);
   padding: 4px 10px;
   border-radius: 10px;
@@ -104,32 +111,21 @@ header button {
   justify-content: start;
   flex-direction: column;
   align-items: center;
-  font-size: 2em;
+  font-size: 2rem;
   color: var(--large-heading-color);
   text-decoration: none;
 }
 
 .hero-section a:hover {
-  animation: grow ease-in 0.5s;
-  font-size: 3em;
-}
-
-@keyframes grow {
-  from {
-    font-size: 2em;
-  }
-  to {
-    font-size: 3em;
-  }
+  transform: scale(1.25, 1);
 }
 
 .hero-section h1 {
-  font-size: 3em;
+  font-size: 3rem;
 }
 
 .hero-section p {
-  line-height: 1.5;
-  font-size: 1.25em;
+  font-size: 1.25rem;
 }
 
 .hero-section h1 span {
@@ -159,25 +155,22 @@ header button {
 
 /* FEATURES */
 
-.features {
-  padding-top: 2rem;
-}
-
-.features > article {
+.features > div {
   gap: 2rem;
 }
 
-.features > h2 {
-  font-size: 2em;
+section > h2 {
+  font-size: 2rem;
   text-align: center;
-  margin-bottom: 2rem;
+  margin: 2rem 0;
 }
 
-.features article > article {
+.features article {
   align-items: center;
   justify-content: space-between;
-  padding: 0 10rem;
+  padding: 2rem 10rem;
   border-radius: 0.5em;
+  border: 1px solid var(--border-color);
 }
 
 .features article img {
@@ -185,38 +178,57 @@ header button {
   object-fit: contain;
 }
 
-.features > article > article:nth-child(odd) {
+.features article:nth-child(odd) {
   background-color: var(--secondary-background-color);
-}
-
-.features > article > article:nth-child(even) {
-  background-color: var(--primary-accent-color);
-}
-
-.features > article h2 {
   color: var(--large-heading-color);
 }
 
-.features > article p {
-  color: var(--body-text-color);
+.features article:nth-child(even) {
+  background-color: var(--primary-accent-color);
+  color: var(--on-primary-color);
+}
+
+.features article h2 {
+  font-size: 3rem;
+}
+
+/* CONTACT */
+
+.contact form {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact form button {
+  margin-top: 1rem;
+}
+
+.contact form .row {
+  display: flex;
+  gap: 1rem;
+}
+
+.contact form .row .col {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.block {
+  display: block;
 }
 
 /* NEWSLETTER */
 
-.newsletter {
-  width: 30vw;
-  margin: 2rem auto;
-}
-
 .newsletter form {
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   margin-top: 2rem;
 }
 
-.newsletter input {
+form input {
   padding: 0.5rem;
   border-radius: 8px;
   padding: 10px 14px;
@@ -225,13 +237,69 @@ header button {
   border: 1px solid var(--muted-text-color);
 }
 
-.newsletter button {
+form button {
   background-color: var(--primary-accent-color);
-  color: var(--primary-background-color);
+  color: var(--on-primary-color);
+  border: 1px solid var(--primary-accent-color);
+}
+
+button {
+  background-color: var(--secondary-background-color);
+  color: var(--large-heading-color);
+  font-weight: bold;
   padding: 10px 14px;
   border-radius: 8px;
-  border: 1px solid var(--primary-accent-color);
+  border: 1px solid var(--secondary-background-color);
   cursor: pointer;
+}
+
+form textarea {
+  min-width: 100%;
+  max-width: 100%;
+  height: 100%;
+  resize: vertical;
+}
+/* INFO CARDS */
+
+.info-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+/*  POUPLAR RECIPES */
+
+.recipe-card {
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-card img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+
+.recipe-card div {
+  padding: 1rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-card button {
+  margin-top: auto;
+}
+
+footer {
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 /* COPYRIGHTS */
