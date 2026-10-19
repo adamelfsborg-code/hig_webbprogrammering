@@ -13,14 +13,16 @@ html {
 }
 
 body {
-  font-family: "Open sans", sans-serif;
+  font-family: "Inter", sans-serif;
   background-color: var(--primary-background-color);
   line-height: 1.5;
 }
 
 .container {
-  max-width: 120rem;
+  max-width: 75rem;
+  padding: 2rem 0 0 0;
   margin-inline: auto;
+  display: grid;
   grid-template-areas:
     "header"
     "main"
