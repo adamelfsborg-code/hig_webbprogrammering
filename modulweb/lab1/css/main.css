@@ -22,6 +22,7 @@ body {
   max-width: 75rem;
   margin: var(--large-spacing) var(--large-spacing) 0 var(--large-spacing);
   margin-inline: auto;
+  padding-inline: var(--spacing);
   display: grid;
   grid-template-areas:
     "header"
@@ -118,14 +119,14 @@ button:hover {
     "text img"
     "arrow img";
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 2fr 1fr;
   overflow: hidden;
 }
 
 .hero-section hgroup {
   grid-area: text;
   display: flex;
-  justify-content: center;
+  justify-content: end;
   flex-direction: column;
 }
 
@@ -138,7 +139,7 @@ button:hover {
 .hero-section a {
   grid-area: arrow;
   display: flex;
-  justify-content: start;
+  justify-content: end;
   flex-direction: column;
   align-items: center;
   font-size: 2rem;
