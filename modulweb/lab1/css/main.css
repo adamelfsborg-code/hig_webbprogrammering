@@ -20,7 +20,7 @@ body {
 
 .container {
   max-width: 75rem;
-  padding: 2rem 0 0 0;
+  margin: var(--large-spacing) var(--large-spacing) 0 var(--large-spacing);
   margin-inline: auto;
   display: grid;
   grid-template-areas:
@@ -55,6 +55,16 @@ a {
   font-family: "Inter", sans-serif;
 }
 
+button {
+  background-color: var(--secondary-background-color);
+  color: var(--large-heading-color);
+  font-weight: bold;
+  padding: var(--spacing);
+  border-radius: 8px;
+  border: 1px solid var(--secondary-background-color);
+  cursor: pointer;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -73,7 +83,7 @@ header nav ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: var(--spacing);
 }
 
 header nav ul li a {
@@ -85,19 +95,24 @@ header nav ul li a:hover {
   color: var(--primary-accent-color);
 }
 
-header button {
+button.primary {
   background-color: var(--primary-accent-color);
   color: var(--on-primary-color);
   border: 1px solid var(--primary-accent-color);
+}
+
+header button {
   padding: 4px 10px;
-  border-radius: 10px;
-  cursor: pointer;
+}
+
+button:hover {
+  color: var(--hover-accent-color);
 }
 
 /* HERO SECTION */
 
 .hero-section {
-  height: calc(100vh - 64px - 4rem);
+  height: calc(100vh - 64px - (var(--large-spacing) * 2));
   display: grid;
   grid-template-areas:
     "text img"
@@ -177,13 +192,13 @@ header button {
 section > h2 {
   font-size: 2rem;
   text-align: center;
-  margin: 2rem 0;
+  margin: var(--large-spacing) 0;
 }
 
 .features article {
   align-items: center;
   justify-content: space-between;
-  padding: 2rem 10rem;
+  padding: var(--large-spacing) 10rem;
   border-radius: 0.5em;
   border: 1px solid var(--border-color);
 }
@@ -207,72 +222,12 @@ section > h2 {
   font-size: 2rem;
 }
 
-/* CONTACT */
-
-.contact form {
-  margin-top: 2rem;
-  display: flex;
-  flex-direction: column;
-}
-
-form .row {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-form .row .col {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-/* NEWSLETTER */
-
-.newsletter form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  margin-top: 2rem;
-}
-
-form input,
-form textarea {
-  border-radius: 8px;
-  padding: 10px 14px;
-  color: var(--body-text-color);
-  background-color: var(--surface-background-color);
-  border: 1px solid var(--muted-text-color);
-}
-
-form button {
-  background-color: var(--primary-accent-color);
-  color: var(--on-primary-color);
-  border: 1px solid var(--primary-accent-color);
-}
-
-button {
-  background-color: var(--secondary-background-color);
-  color: var(--large-heading-color);
-  font-weight: bold;
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid var(--secondary-background-color);
-  cursor: pointer;
-}
-
-form textarea {
-  min-width: 100%;
-  max-width: 100%;
-  height: 100%;
-  resize: vertical;
-}
 /*  POUPLAR RECIPES */
 
 .recipe-cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 1rem;
+  gap: var(--spacing);
 }
 
 .recipe-card {
@@ -291,7 +246,7 @@ form textarea {
 }
 
 .recipe-card div {
-  padding: 1rem;
+  padding: var(--spacing);
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -301,12 +256,56 @@ form textarea {
   margin-top: auto;
 }
 
+.recipe-card button:hover {
+  color: var(--muted-text-color);
+}
+
+/* CONTACT */
+
 footer {
-  margin-top: 2rem;
+  margin-top: var(--large-spacing);
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: var(--large-spacing);
+}
+
+form {
+  margin-top: var(--large-spacing);
+  display: flex;
+  flex-direction: column;
+}
+
+form .row {
+  display: flex;
+  gap: var(--spacing);
+  margin-bottom: var(--spacing);
+}
+
+form .row .col {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+input,
+textarea {
+  border-radius: 8px;
+  padding: var(--spacing);
+  color: var(--body-text-color);
+  background-color: var(--surface-background-color);
+  border: 1px solid var(--muted-text-color);
+  outline: none;
+}
+
+input:focus,
+textarea:focus {
+  border: 1px solid var(--primary-accent-color);
+}
+
+form textarea {
+  height: 100%;
+  resize: vertical;
 }
 
 /* COPYRIGHTS */
@@ -314,6 +313,6 @@ footer {
 footer .copyrights {
   background-color: var(--secondary-background-color);
   text-align: center;
-  padding: 1rem;
+  padding: var(--spacing);
   border-radius: 0.5em;
 }
