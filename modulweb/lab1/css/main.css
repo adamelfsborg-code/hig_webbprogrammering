@@ -113,20 +113,15 @@ button:hover {
 /* HERO SECTION */
 
 .hero-section {
-  height: calc(100vh - 64px - (var(--large-spacing) * 2));
   display: grid;
-  grid-template-areas:
-    "text img"
-    "arrow img";
-  grid-template-columns: 1fr 2fr;
-  grid-template-rows: 2fr 1fr;
-  overflow: hidden;
+  grid-template-areas: "text img";
+  grid-template-columns: 1fr 1fr;
 }
 
-.hero-section hgroup {
+.hero-section > div {
   grid-area: text;
   display: flex;
-  justify-content: end;
+  justify-content: center;
   flex-direction: column;
 }
 
@@ -152,7 +147,11 @@ button:hover {
 }
 
 .hero-section h1 {
-  font-size: 3rem;
+  font-size: clamp(
+    2.5rem,
+    2.5vw,
+    3rem
+  ); /* Storleken kan ej gå under 2.5rem eller över 3rem, när skrämen växer ökar texten i takt med 2,5% av fönstrets bredd  */
 }
 
 .hero-section p {
