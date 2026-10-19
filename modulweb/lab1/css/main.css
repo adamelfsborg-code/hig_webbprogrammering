@@ -110,6 +110,12 @@ button:hover {
   color: var(--hover-accent-color);
 }
 
+section > h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin: var(--large-spacing) 0;
+}
+
 /* HERO SECTION */
 
 .hero-section {
@@ -132,7 +138,6 @@ button:hover {
 }
 
 .hero-section a {
-  grid-area: arrow;
   display: flex;
   justify-content: end;
   flex-direction: column;
@@ -148,10 +153,10 @@ button:hover {
 
 .hero-section h1 {
   font-size: clamp(
-    2.5rem,
-    2.5vw,
-    3rem
-  ); /* Storleken kan ej gå under 2.5rem eller över 3rem, när skrämen växer ökar texten i takt med 2,5% av fönstrets bredd  */
+    2rem,
+    1.25rem + 2vw,
+    4rem
+  ); /* Storleken kan ej gå under 2.5rem eller över 3rem, när skärmen växer ökar texten i takt med 2,5% av fönstrets bredd  */
 }
 
 .hero-section p {
@@ -187,12 +192,6 @@ button:hover {
 
 .features > div {
   gap: 2rem;
-}
-
-section > h2 {
-  font-size: 2rem;
-  text-align: center;
-  margin: var(--large-spacing) 0;
 }
 
 .features article {
