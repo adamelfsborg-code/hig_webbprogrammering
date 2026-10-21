@@ -20,8 +20,7 @@ body {
 
 .container {
   max-width: 75rem;
-  margin: var(--large-spacing) 0 0 0;
-  margin-inline: auto;
+  margin: var(--large-spacing) auto 0 auto;
   padding-inline: var(--spacing);
   display: grid;
   grid-template-areas:
@@ -313,7 +312,6 @@ footer .copyrights {
 @media (max-width: 800px) {
   .container {
     margin: var(--spacing) 0 0 0;
-    margin-inline: 0;
   }
 
   .hero-section hgroup {
@@ -322,6 +320,7 @@ footer .copyrights {
 
   header {
     grid-template-areas: "logo" "nav";
+    grid-template-columns: auto;
     justify-content: center;
   }
 
@@ -337,10 +336,6 @@ footer .copyrights {
 
   .hero-section img {
     display: none;
-  }
-
-  .hero-section a:hover {
-    transform: none;
   }
 
   .zigzag > *:nth-child(odd) {
