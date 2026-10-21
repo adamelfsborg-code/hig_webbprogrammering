@@ -20,7 +20,7 @@ body {
 
 .container {
   max-width: 75rem;
-  margin: var(--large-spacing) var(--large-spacing) 0 var(--large-spacing);
+  margin: var(--large-spacing) 0 0 0;
   margin-inline: auto;
   padding-inline: var(--spacing);
   display: grid;
@@ -39,14 +39,12 @@ h2,
 h3,
 h4,
 h5,
-h6,
-h7 {
+h6 {
   font-family: "Plus Jakarta Sans", sans-serif;
 }
 
-p,
-button,
-a {
+input,
+textarea {
   font-family: "Inter", sans-serif;
 }
 
@@ -104,10 +102,6 @@ button.primary {
   border: 1px solid var(--primary-accent-color);
 }
 
-header button {
-  padding: 4px 10px;
-}
-
 button:hover {
   color: var(--hover-accent-color);
 }
@@ -136,6 +130,7 @@ section > h2 {
 .hero-section img {
   grid-area: img;
   width: 100%;
+  object-fit: contain;
 }
 
 .hero-section a {
@@ -149,7 +144,7 @@ section > h2 {
 }
 
 .hero-section a:hover {
-  transform: scale(1.25, 1);
+  transform: scale(1.25, 1.25);
 }
 
 .hero-section h1 {
@@ -157,7 +152,7 @@ section > h2 {
     2rem,
     2.5vw,
     3rem
-  ); /* Storleken kan ej gå under 2.5rem eller över 3rem, när skärmen växer ökar texten i takt med 2,5% av fönstrets bredd  */
+  ); /* Storleken kan ej gå under 2rem eller över 3rem, när skärmen växer ökar texten i takt med 2,5% av fönstrets bredd  */
 }
 
 .hero-section p {
@@ -172,8 +167,6 @@ section > h2 {
 
 .zigzag {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: start;
   flex-direction: column;
 }
 
@@ -327,12 +320,35 @@ footer .copyrights {
     text-align: center;
   }
 
+  header {
+    grid-template-areas: "logo" "nav";
+    justify-content: center;
+  }
+
+  header img {
+    margin-inline: auto;
+  }
+
+  .hero-section {
+    height: 100vh;
+    grid-template-areas: "text";
+    grid-template-columns: 1fr;
+  }
+
+  .hero-section img {
+    display: none;
+  }
+
+  .hero-section a:hover {
+    transform: none;
+  }
+
   .zigzag > *:nth-child(odd) {
     flex-direction: column;
   }
 
   .zigzag > *:nth-child(even) {
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
 
   .features article {
@@ -345,5 +361,9 @@ footer .copyrights {
 
   .recipe-cards {
     grid-template-columns: 1fr;
+  }
+
+  .row {
+    flex-direction: column;
   }
 }
