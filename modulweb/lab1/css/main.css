@@ -30,14 +30,8 @@ body {
     "footer";
 }
 
-.container header {
-  grid-area: header;
-}
 .container main {
   grid-area: main;
-}
-.container footer {
-  grid-area: footer;
 }
 
 h1,
@@ -67,16 +61,24 @@ button {
 }
 
 header {
-  display: flex;
+  grid-area: header;
+  display: grid;
+  grid-template-areas: "logo nav";
+  grid-template-columns: auto auto;
   justify-content: space-between;
   align-items: center;
 }
 
 header img {
+  grid-area: logo;
   width: 64px;
   height: auto;
   border-radius: 50%;
   border: 2px solid var(--border-color);
+}
+
+header nav {
+  grid-area: nav;
 }
 
 header nav ul {
@@ -204,7 +206,6 @@ section > h2 {
 
 .features article img {
   max-height: 40vh;
-  object-fit: contain;
 }
 
 .features article:nth-child(odd) {
@@ -240,8 +241,6 @@ section > h2 {
 
 .recipe-card img {
   width: 100%;
-  aspect-ratio: 4/3;
-  object-fit: cover;
 }
 
 .recipe-card div {
@@ -262,6 +261,7 @@ section > h2 {
 /* CONTACT */
 
 footer {
+  grid-area: footer;
   margin-top: var(--large-spacing);
   width: 100%;
   display: flex;
@@ -314,4 +314,37 @@ footer .copyrights {
   text-align: center;
   padding: var(--spacing);
   border-radius: 0.5em;
+}
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+  .container {
+    margin: var(--spacing) 0 0 0;
+    margin-inline: 0;
+  }
+
+  .hero-section hgroup {
+    text-align: center;
+  }
+
+  .zigzag > *:nth-child(odd) {
+    flex-direction: column;
+  }
+
+  .zigzag > *:nth-child(even) {
+    flex-direction: column-reverse;
+  }
+
+  .features article {
+    padding: var(--spacing);
+  }
+
+  .features article hgroup {
+    text-align: center;
+  }
+
+  .recipe-cards {
+    grid-template-columns: 1fr;
+  }
 }
