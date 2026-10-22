@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: grid;
+  grid-template-areas:
+    "header aside"
+    "main aside";
+  grid-template-columns: auto 20rem;
+  grid-template-rows: 5rem auto;
+  position: relative;
+}
+
+.container .navbar {
+  grid-area: header;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid #333;
+}
+.container .sidebar {
+  grid-area: aside;
+  position: sticky;
+  top: 0;
+}
+
+.container .sidebar header {
+  height: 5rem;
+}
+
+.container main {
+  grid-area: main;
+  height: 200vh;
+}

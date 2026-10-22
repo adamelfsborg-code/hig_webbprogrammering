@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="js/app.js" defer></script>
+
+    <title>Einstürzende Neubauten</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="navbar">
+        <h1>Einstürzende Neubauten</h1>
+        <button>Öppna meny</button>
+      </header>
+      <aside class="sidebar">
+        <header>
+          <h2>Varukorg</h2>
+          <button>X</button>
+        </header>
+        <section class="cart">
+          <article>
+            <img src="images/album1.jpg" alt="Album 1" />
+            <div>
+              <h3>Namn</h3>
+              <div>
+                <p>Årtal</p>
+                <p>Pris SEK</p>
+              </div>
+              <div>
+                <button>-</button>
+                <span>Antal</span>
+                <span>+</span>
+              </div>
+            </div>
+          </article>
+          <article>
+            <img src="images/album2.jpg" alt="Album 2" />
+            <div>
+              <h3>Namn</h3>
+              <div>
+                <p>Årtal</p>
+                <p>Pris SEK</p>
+              </div>
+              <div>
+                <button>-</button>
+                <span>2</span>
+                <span>+</span>
+              </div>
+            </div>
+          </article>
+        </section>
+        <footer class="totals">
+          <p>Antal album: <span data-articles-in-cart>3</span></p>
+          <p>
+            Summa före rabatt: <span data-sum-without-discount>580</span> kr
+          </p>
+          <p>Rabatt (10 %): <span data-total-discount>58</span> kr</p>
+          <p>Totalt att betala: <span data-sum-with-discount>522</span> kr</p>
+        </footer>
+      </aside>
+      <main></main>
+    </div>
+  </body>
+</html>
