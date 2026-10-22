@@ -162,31 +162,77 @@ button {
 .album-gallery {
   display: grid;
   grid-template-areas:
-    "header"
-    "thumbnails"
-    "spotlight";
-  grid-template-columns: 1fr;
+    "header header"
+    "thumbnails thumbnails"
+    "spotlight info";
+  grid-template-columns: 20rem auto;
+  grid-template-rows: 5rem 10rem auto;
   gap: 1rem;
   border-bottom: 2px solid var(--muted-text-color);
   padding: 2rem 0;
 }
 
-.album-gallery h2 {
+.album-gallery > h2 {
   grid-area: header;
   text-align: center;
 }
 
 .album-gallery .thumbnails {
+  grid-area: thumbnails;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .album-gallery .thumbnails img {
-  height: 128px;
+  height: 100%;
   cursor: pointer;
 }
 
-.album-gallery .spotlight {
+.album-gallery .thumbnails img:hover,
+.album-gallery .thumbnails .active {
+  border: 2px solid var(--details-color);
+}
+
+.album-gallery > article {
+  grid-area: spotlight;
+  cursor: pointer;
+  position: relative;
+}
+
+.album-gallery > article:hover > aside {
+  opacity: 1;
+  transition: opacity 0.25s ease-in;
+}
+
+.album-gallery > article img {
+  height: 100%;
+  width: 100%;
+}
+
+.album-gallery > article aside {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 2rem;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.album-gallery > article aside ol {
+  column-count: 2;
+}
+
+.album-gallery > .info {
+  grid-area: info;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+}
+
+.album-gallery > aside {
+  grid-area: tracks;
 }
