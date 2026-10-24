@@ -13,53 +13,18 @@
     <div class="container">
       <header class="navbar">
         <h1 class="header-text">Einstürzende Neubauten</h1>
-        <button>Öppna meny</button>
+        <button>Öppna Varukorg</button>
       </header>
-      <aside class="sidebar">
+      <aside class="sidebar" data-cart>
         <header>
           <h2>Varukorg</h2>
           <button>X</button>
         </header>
-        <section class="cart">
-          <article>
-            <img src="images/album1.jpg" alt="Album 1" />
-            <div>
-              <h3>Namn</h3>
-              <div>
-                <p>Årtal</p>
-                <p>Pris SEK</p>
-              </div>
-              <div>
-                <button>-</button>
-                <span>Antal</span>
-                <span>+</span>
-              </div>
-            </div>
-          </article>
-          <article>
-            <img src="images/album2.jpg" alt="Album 2" />
-            <div>
-              <h3>Namn</h3>
-              <div>
-                <p>Årtal</p>
-                <p>Pris SEK</p>
-              </div>
-              <div>
-                <button>-</button>
-                <span>2</span>
-                <span>+</span>
-              </div>
-            </div>
-          </article>
+        <section class="cart-items" data-cart-items></section>
+        <section class="empty-cart" data-empty-cart>
+          <img src="images/empty-cart.png" alt="Empty cart" />
         </section>
-        <footer class="totals">
-          <p>Antal album: <span data-articles-in-cart>3</span></p>
-          <p>
-            Summa före rabatt: <span data-sum-without-discount>580</span> kr
-          </p>
-          <p>Rabatt (10 %): <span data-total-discount>58</span> kr</p>
-          <p>Totalt att betala: <span data-sum-with-discount>522</span> kr</p>
-        </footer>
+        <footer class="totals" data-cart-totals></footer>
       </aside>
       <main>
         <section class="hero-section">
@@ -74,60 +39,120 @@
             </p>
           </hgroup>
         </section>
-        <section class="image-gallery">
+        <section class="image-gallery" data-image-gallery>
           <h2>Bildgallerian</h2>
           <div class="thumbnails">
-            <img src="images/band1.jpg" class="active" />
-            <img src="images/band2.jpg" />
-            <img src="images/band4.jpg" />
-            <img src="images/band5.jpg" />
-            <img src="images/band1.jpg" />
-            <img src="images/band4.jpg" />
-            <img src="images/band3.jpg" />
-            <img src="images/band2.jpg" />
-            <img src="images/band3.jpg" />
-            <img src="images/band5.jpg" />
+            <img
+              src="images/band1.jpg"
+              data-image-thumbnail
+              data-image-source="images/band1.jpg"
+              data-image-desc="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat illum ut officiis nesciunt tenetur aliquid minima asperiores fugit"
+            />
+            <img
+              src="images/band2.jpg"
+              data-image-thumbnail
+              data-image-source="images/band2.jpg"
+              data-image-desc="Donec sed pulvinar odio. Ut lectus quam, suscipit in porta non, aliquet vitae sapien. "
+            />
+            <img
+              src="images/band3.jpg"
+              data-image-thumbnail
+              data-image-source="images/band3.jpg"
+              data-image-desc="Phasellus eget laoreet nulla, quis iaculis ligula. Aliquam erat volutpat. Nunc varius nibh orci, quis venenatis purus porta sit amet. Vestibulum posuere bibendum neque, eu pellentesque ex bibendum a. Aliquam ut volutpat "
+            />
+            <img
+              src="images/band4.jpg"
+              data-image-thumbnail
+              data-image-source="images/band4.jpg"
+              data-image-desc="Pellentesque eget lacus id felis interdum fermentum ac at sem. "
+            />
+            <img
+              src="images/band5.jpg"
+              data-image-thumbnail
+              data-image-source="images/band5.jpg"
+              data-image-desc="Cras magna nisl, rhoncus sit amet odio non, lacinia elementum massa. Suspendisse sollicitudin consequat elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. "
+            />
           </div>
-          <article class="spotlight">
-            <img src="images/band1.jpg" />
-            <p>
+          <article class="spotlight" data-spotlight>
+            <img src="images/band1.jpg" data-spotlight-image alt="The band" />
+            <p data-spotlight-desc>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat
               illum ut officiis nesciunt tenetur aliquid minima asperiores fugit
-              reprehenderit optio magnam voluptatibus, praesentium aspernatur
-              voluptate cupiditate, ea mollitia! Accusamus, fugiat!
             </p>
           </article>
         </section>
-        <section class="album-gallery">
+        <section class="album-gallery" data-album-gallery>
           <h2>Albumgallerian</h2>
           <div class="thumbnails">
-            <img src="images/album1.jpg" alt="Album 1" />
-            <img src="images/album2.jpg" alt="Album 1" />
-            <img src="images/album3.jpg" alt="Album 1" />
-            <img src="images/album4.jpg" alt="Album 1" />
+            <img
+              src="images/album1.jpg"
+              data-album-thumbnail
+              data-album-title="Halber Mensch"
+              data-album-source="images/album1.jpg"
+              data-album-tracks="Halber Mensch,Fütter Mein Ego, Trinklied,Z.N.S,Seele Brennt,Sehnsucht,Der Tod Ist Ein Dandy,Leztes Biest,Sand,Das Schaben"
+              data-album-year="1985"
+              data-album-price="299"
+              alt="Halber Mensch"
+            />
+            <img
+              src="images/album2.jpg"
+              data-album-thumbnail
+              data-album-title="Ende Neu"
+              data-album-source="images/album2.jpg"
+              data-album-tracks="Was Ist Ist,Stella Maris,Die Explosion im Festpielhaus,Installation No. 1,NNNAAAMMM,Ende Neu,The Garden,Der Schacht von Babel"
+              data-album-year="1996"
+              data-album-price="89"
+              alt="Ende Neu"
+            />
+            <img
+              src="images/album3.jpg"
+              data-album-thumbnail
+              data-album-title="Silence Is Sexy"
+              data-album-source="images/album3.jpg"
+              data-album-tracks="Sabrina,Silence Is Sexy,In Circles,Newtons Gravitätlichkeit,Zampano,Heaven is of Honey,Beuty,Die Befindlichkeit des Landes,Sonnenbarke,Musentango,Alles,Redukt,Dingsaller,Total Eclipse of the Sun"
+              data-album-year="2000"
+              data-album-price="79"
+              alt="Silence Is Sexy"
+            />
+            <img
+              src="images/album4.jpg"
+              data-album-thumbnail
+              data-album-title="Kollaps"
+              data-album-source="images/album4.jpg"
+              data-album-tracks="Tanz Debil,Steh auf Berlin,Negativ Nein,U-Haft-Muzak,Draußen ist Feindlich,Schmerzen Hören,Jet'm,Kollaps,Sehnsucht,Vorm Krieg,Hirnsäge,Abstieg & Zerfall,Helga,Schießen ist Feindlich,Schmerzen Hören,Jet'm,Kollaps,Sehnsucht,Vorm Krieg,Hirnsäge,Abstieg & Zerfall,Helga,Schieß Euch Ins Blut,Rohrbombe,Futristischer,Sado-Masodub,Liebesub,Spionagedub,Mikrobendub,Gasterbeiterdub,Riveradub,Lünebest"
+              data-album-year="1981"
+              data-album-price="699"
+              alt="Kollaps"
+            />
           </div>
-          <article>
-            <img src="images/album1.jpg" alt="Album 1" />
-            <aside>
-              <ol>
-                <li>Rock with me</li>
-                <li>Danse now</li>
-                <li>Rock with me</li>
-                <li>Rock with me</li>
-                <li>Rock with me</li>
-              </ol>
-            </aside>
-          </article>
-          <div class="info">
-            <hgroup>
-              <h3>Album 1</h3>
-              <p>1963</p>
-            </hgroup>
-            <div>
-              <p>200kr</p>
-              <button>Lägg till i korg</button>
+          <article data-spotlight>
+            <div class="album-cover">
+              <img
+                src="images/album1.jpg"
+                alt="Halber Mensch"
+                data-spotlight-image
+              />
+              <aside>
+                <ol data-spotlight-tracks>
+                  <li>Rock with me</li>
+                  <li>Danse now</li>
+                  <li>Rock with me</li>
+                  <li>Rock with me</li>
+                  <li>Rock with me</li>
+                </ol>
+              </aside>
             </div>
-          </div>
+            <div class="info">
+              <hgroup>
+                <h3 data-spotlight-title>Halber Mensch</h3>
+                <p data-spotlight-year>1985</p>
+              </hgroup>
+              <div>
+                <p><span data-spotlight-price>299</span> kr</p>
+                <button data-add-album-to-cart>Lägg till i korg</button>
+              </div>
+            </div>
+          </article>
         </section>
       </main>
     </div>
