@@ -12,32 +12,32 @@
   <body>
     <div class="container" data-container>
       <header class="navbar">
-        <h1 class="header-text">Einstürzende Neubauten</h1>
+        <h1>Einstürzende Neubauten</h1>
         <button data-open-cart>Öppna Varukorg</button>
       </header>
-      <aside class="sidebar hidden-sidebar" data-sidebar>
+      <aside class="sidebar" data-sidebar>
         <header>
           <h2>Varukorg</h2>
           <button data-close-cart>X</button>
         </header>
         <section class="cart-items" data-cart-items></section>
-        <section class="empty-cart" data-empty-cart>
+        <section class="empty-cart">
           <img src="images/empty-cart.png" alt="Empty cart" />
         </section>
-        <footer class="totals" data-cart-totals></footer>
+        <footer data-cart-totals></footer>
       </aside>
       <main>
         <section class="hero-section">
-          <img src="images/portrait.png" />
-          <hgroup>
-            <h2>Historia</h2>
-            <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam
-              maxime recusandae quis consequuntur in tempora. Deserunt labore
-              accusamus quo autem earum, quasi, modi tenetur amet necessitatibus
-              temporibus nulla repellat. Labore?
-            </p>
-          </hgroup>
+          <img src="images/portrait-namn.png" />
+          <p>
+            Einstürzende Neubauten är ett tyskt experimentellt rockband som
+            bildades i Västberlin 1980. Med sin unika blandning av industriella
+            ljud, avantgarde och elektroniska inslag har de blivit pionjärer
+            inom **industrial-musiken**. Genom att använda metallskrot,
+            byggverktyg och egenbyggda instrument skapar de ett rått, mörkt och
+            kompromisslöst sound som ständigt utmanar gränserna för vad musik
+            kan vara.
+          </p>
         </section>
         <section class="image-gallery" data-image-gallery>
           <h2>Bildgallerian</h2>
@@ -47,34 +47,44 @@
               data-image-thumbnail
               data-image-source="images/band1.jpg"
               data-image-desc="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat illum ut officiis nesciunt tenetur aliquid minima asperiores fugit"
+              data-image-alt="Band 1"
+              alt="Band 1"
             />
             <img
               src="images/band2.jpg"
               data-image-thumbnail
               data-image-source="images/band2.jpg"
               data-image-desc="Donec sed pulvinar odio. Ut lectus quam, suscipit in porta non, aliquet vitae sapien. "
+              data-image-alt="Band 2"
+              alt="Band 2"
             />
             <img
               src="images/band3.jpg"
               data-image-thumbnail
               data-image-source="images/band3.jpg"
               data-image-desc="Phasellus eget laoreet nulla, quis iaculis ligula. Aliquam erat volutpat. Nunc varius nibh orci, quis venenatis purus porta sit amet. Vestibulum posuere bibendum neque, eu pellentesque ex bibendum a. Aliquam ut volutpat "
+              data-image-alt="Band 3"
+              alt="Band 3"
             />
             <img
               src="images/band4.jpg"
               data-image-thumbnail
               data-image-source="images/band4.jpg"
               data-image-desc="Pellentesque eget lacus id felis interdum fermentum ac at sem. "
+              data-image-alt="Band 4"
+              alt="band 4"
             />
             <img
               src="images/band5.jpg"
               data-image-thumbnail
               data-image-source="images/band5.jpg"
               data-image-desc="Cras magna nisl, rhoncus sit amet odio non, lacinia elementum massa. Suspendisse sollicitudin consequat elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. "
+              data-image-alt="Band 5"
+              alt="Band 5"
             />
           </div>
           <article class="spotlight" data-spotlight>
-            <img src="images/band1.jpg" data-spotlight-image alt="The band" />
+            <img src="images/band1.jpg" data-spotlight-image alt="Band 1" />
             <p data-spotlight-desc>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat
               illum ut officiis nesciunt tenetur aliquid minima asperiores fugit
@@ -89,7 +99,7 @@
               data-album-thumbnail
               data-album-title="Halber Mensch"
               data-album-source="images/album1.jpg"
-              data-album-tracks="Halber Mensch,Fütter Mein Ego, Trinklied,Z.N.S,Seele Brennt,Sehnsucht,Der Tod Ist Ein Dandy,Leztes Biest,Sand,Das Schaben"
+              data-album-tracks="Halber Mensch,Fütter Mein Ego,Trinklied,Z.N.S,Seele Brennt,Sehnsucht,Der Tod Ist Ein Dandy,Leztes Biest,Sand,Das Schaben"
               data-album-year="1985"
               data-album-price="299"
               alt="Halber Mensch"
@@ -119,7 +129,7 @@
               data-album-thumbnail
               data-album-title="Kollaps"
               data-album-source="images/album4.jpg"
-              data-album-tracks="Tanz Debil,Steh auf Berlin,Negativ Nein,U-Haft-Muzak,Draußen ist Feindlich,Schmerzen Hören,Jet'm,Kollaps,Sehnsucht,Vorm Krieg,Hirnsäge,Abstieg & Zerfall,Helga,Schießen ist Feindlich,Schmerzen Hören,Jet'm,Kollaps,Sehnsucht,Vorm Krieg,Hirnsäge,Abstieg & Zerfall,Helga,Schieß Euch Ins Blut,Rohrbombe,Futristischer,Sado-Masodub,Liebesub,Spionagedub,Mikrobendub,Gasterbeiterdub,Riveradub,Lünebest"
+              data-album-tracks="Tanz Debil,Steh auf Berlin,Negativ Nein,U-Haft-Muzak,Draußen ist Feindlich,Schmerzen Hören,Jet'm,Kollaps,Sehnsucht,Vorm Krieg,Hirnsäge,Abstieg & Zerfall,Helga,Schießen ist Feindlich,Schmerzen Hören,Jet'm,Kollaps,Sehnsucht,Vorm Krieg,Hirnsäge,Abstieg & Zerfall,Rohrbombe,Futristischer,Sado-Masodub,Liebesub,Spionagedub,Mikrobendub,Gasterbeiterdub,Riveradub,Lünebest"
               data-album-year="1981"
               data-album-price="699"
               alt="Kollaps"
@@ -133,13 +143,7 @@
                 data-spotlight-image
               />
               <aside>
-                <ol data-spotlight-tracks>
-                  <li>Rock with me</li>
-                  <li>Danse now</li>
-                  <li>Rock with me</li>
-                  <li>Rock with me</li>
-                  <li>Rock with me</li>
-                </ol>
+                <ol data-spotlight-tracks></ol>
               </aside>
             </div>
             <div class="info">
@@ -149,7 +153,9 @@
               </hgroup>
               <div>
                 <p><span data-spotlight-price>299</span> kr</p>
-                <button data-add-album-to-cart>Lägg till i korg</button>
+                <button data-add-album-to-cart>
+                  Lägg till i beställningen
+                </button>
               </div>
             </div>
           </article>

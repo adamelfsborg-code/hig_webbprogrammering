@@ -1,7 +1,8 @@
-const containerHTML = document.querySelector("[data-container]");
 const sidebarHTML = document.querySelector("[data-sidebar]");
 const openCartHTML = document.querySelector("[data-open-cart]");
 const closeCartHTML = document.querySelector("[data-close-cart]");
+const cartItemsHTML = sidebarHTML.querySelector("[data-cart-items]");
+const cartTotalsHTML = sidebarHTML.querySelector("[data-cart-totals]");
 
 openCartHTML.addEventListener("click", () => {
   sidebarHTML.classList.add("open");
@@ -27,10 +28,11 @@ const imageGallerySpotlightDescHTML = imageGallerySpotlightHTML.querySelector(
 
 for (const item of imageGalleryThumbnailsHTML) {
   item.addEventListener("click", (e) => {
-    const { imageSource, imageDesc } = e.target.dataset;
+    const { imageSource, imageDesc, imageAlt } = e.target.dataset;
 
     imageGallerySpotlightImageHTML.src = imageSource;
     imageGallerySpotlightDescHTML.textContent = imageDesc;
+    imageGallerySpotlightImageHTML.alt = imageAlt;
   });
 }
 
@@ -74,7 +76,7 @@ for (const album of albumGalleryThumbnailsHTML) {
     albumGallerySpotlightTracksHTML.innerHTML = "";
     for (const track of tracksList) {
       const listTrackElementHTML = document.createElement("li");
-      listTrackElementHTML.innerHTML = track;
+      listTrackElementHTML.textContent = track.trim();
 
       albumGallerySpotlightTracksHTML.append(listTrackElementHTML);
     }
@@ -83,8 +85,7 @@ for (const album of albumGalleryThumbnailsHTML) {
 
 let cart = [];
 const addAlbumToCartHTML = document.querySelector("[data-add-album-to-cart]");
-
-addAlbumToCartHTML.addEventListener("click", (e) => {
+addAlbumToCartHTML.addEventListener("click", () => {
   const title = albumGallerySpotlightTitleHTML.textContent;
 
   const existingIndex = cart.findIndex((r) => r.title === title);
@@ -105,21 +106,15 @@ addAlbumToCartHTML.addEventListener("click", (e) => {
 });
 
 const reDrawCart = () => {
-  const cartHTML = document.querySelector("[data-sidebar]");
-  const cartItemsHTML = cartHTML.querySelector("[data-cart-items]");
   cartItemsHTML.innerHTML = "";
-
-  const cartTotalsHTML = cartHTML.querySelector("[data-cart-totals]");
   cartTotalsHTML.innerHTML = "";
 
   if (cart.length === 0) return;
 
   /* CART ITEMS */
 
-  for (const [key, item] of Object.entries(cart)) {
+  for (const [key, item] of cart.entries()) {
     const articleHTML = document.createElement("article");
-    articleHTML.id = key;
-
     const itemHTML = document.createElement("div");
     itemHTML.classList.add("item");
     const deleteItemHTML = document.createElement("button");
@@ -205,26 +200,24 @@ const reDrawCart = () => {
   const albumCountHTML = document.createElement("p");
   albumCountHTML.textContent = `Antal album: ${numberOfAlbums} st`;
 
-  const preTax = cart.reduce((pre, cur) => pre + cur.price * cur.count, 0);
-  const totalsPreTaxHTML = document.createElement("p");
-  totalsPreTaxHTML.textContent = `Summa före rabatt: ${preTax} kr`;
+  const preDiscount = cart.reduce((pre, cur) => pre + cur.price * cur.count, 0);
+  const totalsPreDiscountHTML = document.createElement("p");
+  totalsPreDiscountHTML.textContent = `Summa före rabatt: ${preDiscount} kr`;
 
-  const discountDecimal = Math.floor(numberOfAlbums / 3) * 0.1;
-  const discountPercentage = Math.floor(discountDecimal * 100);
+  const discountDecimal = numberOfAlbums >= 3 ? 0.1 : 0;
+  const discount = Math.floor(preDiscount * discountDecimal);
 
-  const discount = Math.floor(preTax * discountDecimal);
+  const totalDiscountHTML = document.createElement("p");
+  totalDiscountHTML.textContent =
+    discountDecimal > 0 ? `Rabatt (10 %): ${discount} kr` : "";
 
-  const totalsInTaxHTML = document.createElement("p");
-  totalsInTaxHTML.textContent = `Rabatt (${discountPercentage} %): ${discount} kr`;
+  const totalPostDiscountHTML = document.createElement("p");
+  const totalsToPay = preDiscount - discount;
 
-  const totalsSubTaxHTML = document.createElement("p");
-
-  const totalsToPay = preTax - discount;
-
-  totalsSubTaxHTML.textContent = `Totalt att betala: ${totalsToPay} kr`;
+  totalPostDiscountHTML.textContent = `Totalt att betala: ${totalsToPay} kr`;
 
   cartTotalsHTML.append(albumCountHTML);
-  cartTotalsHTML.append(totalsPreTaxHTML);
-  cartTotalsHTML.append(totalsInTaxHTML);
-  cartTotalsHTML.append(totalsSubTaxHTML);
+  cartTotalsHTML.append(totalsPreDiscountHTML);
+  cartTotalsHTML.append(totalDiscountHTML);
+  cartTotalsHTML.append(totalPostDiscountHTML);
 };

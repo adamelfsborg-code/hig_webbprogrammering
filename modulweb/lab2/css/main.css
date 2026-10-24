@@ -8,12 +8,12 @@
 }
 
 body {
-  background-color: #222;
   font-family: "Barlow Condensed", sans-serif;
   font-weight: 400;
   font-style: normal;
   color: var(--text-color);
   background-color: var(--background-color);
+  font-size: 1.25em;
 }
 
 h1,
@@ -22,11 +22,12 @@ h2 {
   font-weight: 400;
   font-style: normal;
   color: var(--accent-color);
+  font-size: 2em;
 }
 
 h3,
 h4,
-h4,
+h5,
 h6 {
   font-family: "Barlow Condensed", sans-serif;
   font-weight: 700;
@@ -37,6 +38,8 @@ button {
   font-family: "Barlow Condensed", sans-serif;
   font-weight: 500;
   font-style: normal;
+  font-size: 1em;
+  cursor: pointer;
 }
 
 .container {
@@ -46,7 +49,6 @@ button {
     "main";
   grid-template-columns: auto;
   grid-template-rows: 5rem auto;
-  position: relative;
 }
 
 .container .navbar {
@@ -70,24 +72,28 @@ button {
   width: 20rem;
   transform: translateX(100%);
   height: 100vh;
-  padding-inline: 1rem;
   border-left: 1px solid var(--border-color);
   background-color: var(--surface-color);
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  transition:
+    visibility 0.5s ease-in-out,
+    transform 0.5s ease-in-out;
 }
 
 .container .sidebar.open {
   visibility: visible;
   transform: translateX(0);
-  transition: transform 0.5s ease-in-out;
 }
 
 .container .sidebar .cart-items {
   display: flex;
   gap: 1rem;
   flex-direction: column;
-  overflow-y: scroll;
-  height: calc(100% - 180px);
+  overflow-y: auto;
+  flex-grow: 1;
+  padding: 1rem;
 }
 
 .container .sidebar .cart-items:empty {
@@ -138,11 +144,12 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem;
 }
 
 .container .sidebar footer {
-  position: absolute;
-  bottom: 1rem;
+  padding: 1rem;
 }
 
 .container main {
@@ -164,8 +171,10 @@ button {
   height: 80%;
 }
 
-.hero-section hgroup {
+.hero-section p {
+  margin-top: 2rem;
   text-align: center;
+  padding-inline: 5rem;
 }
 
 .image-gallery {
@@ -203,8 +212,6 @@ button {
 }
 .image-gallery .spotlight {
   grid-area: spotlight;
-  display: grid;
-  grid-template-columns: 1fr;
   position: relative;
   border-radius: 20px;
   overflow: hidden;
@@ -237,6 +244,7 @@ button {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin-top: 2rem;
 }
 
 .album-gallery .thumbnails img {
@@ -258,7 +266,6 @@ button {
 }
 
 .album-gallery .album-cover {
-  cursor: pointer;
   position: relative;
 }
 
@@ -289,12 +296,7 @@ button {
 }
 
 .album-gallery .info {
-  grid-area: info;
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.album-gallery aside {
-  grid-area: tracks;
 }
