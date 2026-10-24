@@ -42,9 +42,9 @@ button {
 .container {
   display: grid;
   grid-template-areas:
-    "header aside"
-    "main aside";
-  grid-template-columns: auto 20rem;
+    "header"
+    "main";
+  grid-template-columns: auto;
   grid-template-rows: 5rem auto;
   position: relative;
 }
@@ -59,22 +59,39 @@ button {
   align-items: center;
   padding-inline: 1rem;
   background-color: var(--surface-color);
+  z-index: 1;
 }
 
 .container .sidebar {
-  grid-area: aside;
-  position: sticky;
-  height: 100vh;
+  visibility: hidden;
+  position: fixed;
   top: 0;
+  right: 0;
+  width: 20rem;
+  transform: translateX(100%);
+  height: 100vh;
   padding-inline: 1rem;
   border-left: 1px solid var(--border-color);
   background-color: var(--surface-color);
+  z-index: 1;
+}
+
+.container .sidebar.open {
+  visibility: visible;
+  transform: translateX(0);
+  transition: transform 0.5s ease-in-out;
 }
 
 .container .sidebar .cart-items {
   display: flex;
   gap: 1rem;
   flex-direction: column;
+  overflow-y: scroll;
+  height: calc(100% - 180px);
+}
+
+.container .sidebar .cart-items:empty {
+  display: none;
 }
 
 .container .sidebar .cart-items:has(article) + .empty-cart {
@@ -130,7 +147,7 @@ button {
 
 .container main {
   grid-area: main;
-  height: 200vh;
+  height: auto;
   padding-inline: 1rem;
 }
 

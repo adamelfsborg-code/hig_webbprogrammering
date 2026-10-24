@@ -1,3 +1,16 @@
+const containerHTML = document.querySelector("[data-container]");
+const sidebarHTML = document.querySelector("[data-sidebar]");
+const openCartHTML = document.querySelector("[data-open-cart]");
+const closeCartHTML = document.querySelector("[data-close-cart]");
+
+openCartHTML.addEventListener("click", () => {
+  sidebarHTML.classList.add("open");
+});
+
+closeCartHTML.addEventListener("click", () => {
+  sidebarHTML.classList.remove("open");
+});
+
 const imageGalleryHTML = document.querySelector("[data-image-gallery]");
 const imageGalleryThumbnailsHTML = imageGalleryHTML.querySelectorAll(
   "[data-image-thumbnail]",
@@ -74,10 +87,6 @@ const addAlbumToCartHTML = document.querySelector("[data-add-album-to-cart]");
 addAlbumToCartHTML.addEventListener("click", (e) => {
   const title = albumGallerySpotlightTitleHTML.textContent;
 
-  console.log(
-    cart,
-    cart.findIndex((r) => r.title === title),
-  );
   const existingIndex = cart.findIndex((r) => r.title === title);
   if (existingIndex > -1) {
     cart[existingIndex].count += 1;
@@ -93,13 +102,10 @@ addAlbumToCartHTML.addEventListener("click", (e) => {
   }
 
   reDrawCart();
-
-  console.log(cart);
 });
 
 const reDrawCart = () => {
-  const cartHTML = document.querySelector("[data-cart]");
-
+  const cartHTML = document.querySelector("[data-sidebar]");
   const cartItemsHTML = cartHTML.querySelector("[data-cart-items]");
   cartItemsHTML.innerHTML = "";
 
@@ -199,16 +205,9 @@ const reDrawCart = () => {
   const albumCountHTML = document.createElement("p");
   albumCountHTML.textContent = `Antal album: ${numberOfAlbums} st`;
 
-  const preTax = cart.reduce((pre, cur) => {
-    console.log(pre, cur);
-    return pre + cur.price * cur.count;
-  }, 0);
-  console.log(preTax);
+  const preTax = cart.reduce((pre, cur) => pre + cur.price * cur.count, 0);
   const totalsPreTaxHTML = document.createElement("p");
   totalsPreTaxHTML.textContent = `Summa före rabatt: ${preTax} kr`;
-
-  const kvot = Math.floor(numberOfAlbums / 3);
-  console.log(kvot, kvot * 3);
 
   const discountDecimal = Math.floor(numberOfAlbums / 3) * 0.1;
   const discountPercentage = Math.floor(discountDecimal * 100);

@@ -10,15 +10,15 @@
     <title>Einstürzende Neubauten</title>
   </head>
   <body>
-    <div class="container">
+    <div class="container" data-container>
       <header class="navbar">
         <h1 class="header-text">Einstürzende Neubauten</h1>
-        <button>Öppna Varukorg</button>
+        <button data-open-cart>Öppna Varukorg</button>
       </header>
-      <aside class="sidebar" data-cart>
+      <aside class="sidebar hidden-sidebar" data-sidebar>
         <header>
           <h2>Varukorg</h2>
-          <button>X</button>
+          <button data-close-cart>X</button>
         </header>
         <section class="cart-items" data-cart-items></section>
         <section class="empty-cart" data-empty-cart>
