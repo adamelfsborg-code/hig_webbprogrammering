@@ -2,7 +2,7 @@ const sidebarHTML = document.querySelector("[data-sidebar]");
 const openCartHTML = document.querySelector("[data-open-cart]");
 const closeCartHTML = document.querySelector("[data-close-cart]");
 const cartItemsHTML = sidebarHTML.querySelector("[data-cart-items]");
-const cartTotalsHTML = sidebarHTML.querySelector("[data-cart-totals]");
+const cartFooterHTML = sidebarHTML.querySelector("[data-cart-footer]");
 
 openCartHTML.addEventListener("click", () => {
   sidebarHTML.classList.add("open");
@@ -26,14 +26,36 @@ const imageGallerySpotlightDescHTML = imageGallerySpotlightHTML.querySelector(
   "[data-spotlight-desc]",
 );
 
-for (const item of imageGalleryThumbnailsHTML) {
-  item.addEventListener("click", (e) => {
-    const { imageSource, imageDesc, imageAlt } = e.target.dataset;
+const clearActiveChilNodes = (container) => {
+  const activeChils = container.querySelectorAll(".active");
+  for (const child of activeChils) {
+    child.classList.remove("active");
+  }
+};
 
-    imageGallerySpotlightImageHTML.src = imageSource;
-    imageGallerySpotlightDescHTML.textContent = imageDesc;
-    imageGallerySpotlightImageHTML.alt = imageAlt;
-  });
+const setActiveNode = (container, node) => {
+  clearActiveChilNodes(container);
+  node.classList.add("active");
+};
+
+const handleImageClick = (e) => {
+  setImageInSpotlight(e.target.dataset);
+  setActiveNode(imageGalleryHTML, e.target);
+};
+
+const setImageInSpotlight = (dataset) => {
+  const { imageSource, imageDesc, imageAlt } = dataset;
+  imageGallerySpotlightImageHTML.src = imageSource;
+  imageGallerySpotlightDescHTML.textContent = imageDesc;
+  imageGallerySpotlightImageHTML.alt = imageAlt;
+};
+
+for (const [key, item] of imageGalleryThumbnailsHTML.entries()) {
+  item.addEventListener("click", handleImageClick);
+
+  if (key === 0) {
+    setImageInSpotlight(item.dataset);
+  }
 }
 
 const albumGalleryHTML = document.querySelector("[data-album-gallery]");
@@ -60,43 +82,56 @@ const albumGallerySpotlightPriceHTML = albumGallerySpotlightHTML.querySelector(
   "[data-spotlight-price]",
 );
 
-for (const album of albumGalleryThumbnailsHTML) {
-  album.addEventListener("click", (e) => {
-    const { albumTitle, albumSource, albumTracks, albumYear, albumPrice } =
-      e.target.dataset;
+const handleAlbumClick = (e) => {
+  setAlbumInSpotlight(e.target.dataset);
+  setActiveNode(albumGalleryHTML, e.target);
+};
 
-    albumGallerySpotlightImageHTML.src = albumSource;
-    albumGallerySpotlightImageHTML.alt = albumTitle;
-    albumGallerySpotlightTitleHTML.textContent = albumTitle;
-    albumGallerySpotlightYearHTML.textContent = albumYear;
-    albumGallerySpotlightPriceHTML.textContent = albumPrice;
+let activeAlbum = {};
+const setAlbumInSpotlight = (dataset) => {
+  const { albumTitle, albumSource, albumTracks, albumYear, albumPrice } =
+    dataset;
+  activeAlbum = dataset;
 
-    const tracksList = albumTracks.split(",");
+  albumGallerySpotlightImageHTML.src = albumSource;
+  albumGallerySpotlightImageHTML.alt = albumTitle;
+  albumGallerySpotlightTitleHTML.textContent = albumTitle;
+  albumGallerySpotlightYearHTML.textContent = albumYear;
+  albumGallerySpotlightPriceHTML.textContent = albumPrice;
 
-    albumGallerySpotlightTracksHTML.innerHTML = "";
-    for (const track of tracksList) {
-      const listTrackElementHTML = document.createElement("li");
-      listTrackElementHTML.textContent = track.trim();
+  const tracksList = albumTracks.split(",");
 
-      albumGallerySpotlightTracksHTML.append(listTrackElementHTML);
-    }
-  });
+  albumGallerySpotlightTracksHTML.innerHTML = "";
+  for (const track of tracksList) {
+    const listTrackElementHTML = document.createElement("li");
+    listTrackElementHTML.textContent = track.trim();
+
+    albumGallerySpotlightTracksHTML.append(listTrackElementHTML);
+  }
+};
+
+for (const [key, item] of albumGalleryThumbnailsHTML.entries()) {
+  item.addEventListener("click", handleAlbumClick);
+
+  if (key === 0) {
+    setAlbumInSpotlight(item.dataset);
+  }
 }
 
 let cart = [];
 const addAlbumToCartHTML = document.querySelector("[data-add-album-to-cart]");
 addAlbumToCartHTML.addEventListener("click", () => {
-  const title = albumGallerySpotlightTitleHTML.textContent;
+  const { albumTitle, albumPrice, albumSource, albumYear } = activeAlbum;
 
-  const existingIndex = cart.findIndex((r) => r.title === title);
+  const existingIndex = cart.findIndex((r) => r.title === albumTitle);
   if (existingIndex > -1) {
     cart[existingIndex].count += 1;
   } else {
     const album = {
-      title: title,
-      cover: albumGallerySpotlightImageHTML.src,
-      year: albumGallerySpotlightYearHTML.textContent,
-      price: Number(albumGallerySpotlightPriceHTML.textContent),
+      title: albumTitle,
+      cover: albumSource,
+      year: albumYear,
+      price: albumPrice,
       count: 1,
     };
     cart.push(album);
@@ -107,82 +142,15 @@ addAlbumToCartHTML.addEventListener("click", () => {
 
 const reDrawCart = () => {
   cartItemsHTML.innerHTML = "";
-  cartTotalsHTML.innerHTML = "";
+  cartFooterHTML.innerHTML = "";
 
   if (cart.length === 0) return;
 
   /* CART ITEMS */
 
   for (const [key, item] of cart.entries()) {
-    const articleHTML = document.createElement("article");
-    const itemHTML = document.createElement("div");
-    itemHTML.classList.add("item");
-    const deleteItemHTML = document.createElement("button");
-    deleteItemHTML.textContent = "X";
-
-    deleteItemHTML.addEventListener("click", () => {
-      cart.splice(key, 1);
-      reDrawCart();
-    });
-
-    const albumCoverHTML = document.createElement("img");
-    albumCoverHTML.src = item.cover;
-
-    const infoHTML = document.createElement("div");
-    infoHTML.classList.add("info");
-
-    const titleHTML = document.createElement("h3");
-    titleHTML.textContent = item.title;
-    const yearHTML = document.createElement("p");
-    yearHTML.textContent = item.year;
-    const priceHTML = document.createElement("p");
-    priceHTML.textContent =
-      item.count > 1
-        ? `${item.price * item.count} kr (${item.price} kr/st)`
-        : `${item.price} kr`;
-
-    const countHTML = document.createElement("div");
-    countHTML.classList.add("count");
-
-    const decreaseCountHTML = document.createElement("button");
-    decreaseCountHTML.textContent = "-";
-
-    decreaseCountHTML.addEventListener("click", () => {
-      if (item.count <= 1) {
-        cart.splice(key, 1);
-        reDrawCart();
-        return;
-      }
-      cart[key].count -= 1;
-      reDrawCart();
-    });
-
-    const currentCountHTML = document.createElement("span");
-    currentCountHTML.textContent = item.count;
-    const increaseCountHTML = document.createElement("button");
-    increaseCountHTML.textContent = "+";
-
-    increaseCountHTML.addEventListener("click", () => {
-      cart[key].count += 1;
-      reDrawCart();
-    });
-
-    infoHTML.append(titleHTML);
-    infoHTML.append(yearHTML);
-    infoHTML.append(priceHTML);
-
-    countHTML.append(decreaseCountHTML);
-    countHTML.append(currentCountHTML);
-    countHTML.append(increaseCountHTML);
-
-    itemHTML.append(deleteItemHTML);
-    itemHTML.append(albumCoverHTML);
-    itemHTML.append(infoHTML);
-
-    articleHTML.append(itemHTML);
-    articleHTML.append(countHTML);
-
-    cartItemsHTML.append(articleHTML);
+    const itemHTML = getCartItemHTML(key, item);
+    cartItemsHTML.append(itemHTML);
   }
 
   const clearCartHTML = document.createElement("button");
@@ -193,31 +161,140 @@ const reDrawCart = () => {
   });
   cartItemsHTML.append(clearCartHTML);
 
-  /* TOTALS */
+  /* FOOTER */
 
+  const sums = calculateCartSums(cart);
+  const sumsHTML = getCartSumsHTML(sums);
+  cartFooterHTML.append(sumsHTML);
+
+  const continueCheckoutHTML = document.createElement("button");
+  continueCheckoutHTML.disabled = true;
+  continueCheckoutHTML.textContent = "Fortsätt med beställning";
+  cartFooterHTML.append(continueCheckoutHTML);
+};
+
+const getCartItemHTML = (pos, item) => {
+  const articleHTML = document.createElement("article");
+  articleHTML.id = pos;
+
+  const itemHTML = document.createElement("div");
+  itemHTML.classList.add("item");
+
+  const deleteItemHTML = document.createElement("button");
+  deleteItemHTML.textContent = "X";
+
+  deleteItemHTML.addEventListener("click", () => {
+    changeItemCount(pos, "delete");
+  });
+
+  const albumCoverHTML = document.createElement("img");
+  albumCoverHTML.src = item.cover;
+
+  const infoHTML = document.createElement("div");
+  infoHTML.classList.add("info");
+
+  const titleHTML = document.createElement("h3");
+  titleHTML.textContent = item.title;
+
+  const yearHTML = document.createElement("p");
+  yearHTML.textContent = item.year;
+
+  const priceHTML = document.createElement("p");
+  priceHTML.textContent =
+    item.count > 1
+      ? `${item.price * item.count} kr (${item.price} kr/st)`
+      : `${item.price} kr`;
+
+  const countHTML = document.createElement("div");
+  countHTML.classList.add("count");
+
+  const decreaseCountHTML = document.createElement("button");
+  decreaseCountHTML.textContent = "-";
+
+  decreaseCountHTML.addEventListener("click", () => {
+    changeItemCount(pos, "decreaase");
+  });
+
+  const currentCountHTML = document.createElement("span");
+  currentCountHTML.textContent = item.count;
+
+  const increaseCountHTML = document.createElement("button");
+  increaseCountHTML.textContent = "+";
+
+  increaseCountHTML.addEventListener("click", () => {
+    changeItemCount(pos, "increase");
+  });
+
+  infoHTML.append(titleHTML);
+  infoHTML.append(yearHTML);
+  infoHTML.append(priceHTML);
+
+  countHTML.append(decreaseCountHTML);
+  countHTML.append(currentCountHTML);
+  countHTML.append(increaseCountHTML);
+
+  itemHTML.append(deleteItemHTML);
+  itemHTML.append(albumCoverHTML);
+  itemHTML.append(infoHTML);
+
+  articleHTML.append(itemHTML);
+  articleHTML.append(countHTML);
+
+  return articleHTML;
+};
+
+const calculateCartSums = (cart) => {
   const numberOfAlbums = cart.reduce((pre, cur) => pre + cur.count, 0);
-
-  const albumCountHTML = document.createElement("p");
-  albumCountHTML.textContent = `Antal album: ${numberOfAlbums} st`;
-
   const preDiscount = cart.reduce((pre, cur) => pre + cur.price * cur.count, 0);
-  const totalsPreDiscountHTML = document.createElement("p");
-  totalsPreDiscountHTML.textContent = `Summa före rabatt: ${preDiscount} kr`;
-
   const discountDecimal = numberOfAlbums >= 3 ? 0.1 : 0;
   const discount = Math.floor(preDiscount * discountDecimal);
+  const totalsToPay = preDiscount - discount;
+  return { numberOfAlbums, preDiscount, discount, totalsToPay };
+};
+
+const getCartSumsHTML = (sums) => {
+  const sumsHTML = document.createElement("div");
+  const albumCountHTML = document.createElement("p");
+  albumCountHTML.textContent = `Antal album: ${sums.numberOfAlbums} st`;
+
+  const totalsPreDiscountHTML = document.createElement("p");
+  totalsPreDiscountHTML.textContent = `Summa före rabatt: ${sums.preDiscount} kr`;
 
   const totalDiscountHTML = document.createElement("p");
   totalDiscountHTML.textContent =
-    discountDecimal > 0 ? `Rabatt (10 %): ${discount} kr` : "";
+    sums.discount > 0 ? `Rabatt (10 %): ${sums.discount} kr` : "";
 
   const totalPostDiscountHTML = document.createElement("p");
-  const totalsToPay = preDiscount - discount;
 
-  totalPostDiscountHTML.textContent = `Totalt att betala: ${totalsToPay} kr`;
+  totalPostDiscountHTML.textContent = `Totalt att betala: ${sums.totalsToPay} kr`;
 
-  cartTotalsHTML.append(albumCountHTML);
-  cartTotalsHTML.append(totalsPreDiscountHTML);
-  cartTotalsHTML.append(totalDiscountHTML);
-  cartTotalsHTML.append(totalPostDiscountHTML);
+  sumsHTML.append(albumCountHTML);
+  sumsHTML.append(totalsPreDiscountHTML);
+  sumsHTML.append(totalDiscountHTML);
+  sumsHTML.append(totalPostDiscountHTML);
+  return sumsHTML;
+};
+
+const changeItemCount = (index, action) => {
+  switch (action) {
+    case "increase":
+      cart[index].count += 1;
+      break;
+    case "decreaase":
+      if (cart[index].count <= 1) {
+        deleteItemFromCart(index);
+        break;
+      }
+      cart[index].count -= 1;
+      break;
+    case "delete":
+      deleteItemFromCart(index);
+      break;
+  }
+
+  reDrawCart();
+};
+
+const deleteItemFromCart = (pos) => {
+  cart.splice(pos, 1);
 };

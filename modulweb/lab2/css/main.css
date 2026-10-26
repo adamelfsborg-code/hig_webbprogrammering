@@ -100,7 +100,11 @@ button {
   display: none;
 }
 
-.container .sidebar .cart-items:has(article) + .empty-cart {
+.container .sidebar .cart-items:empty ~ footer {
+  display: none;
+}
+
+.container .sidebar .cart-items:has(article) ~ .empty-cart {
   display: none;
 }
 
@@ -149,6 +153,9 @@ button {
 }
 
 .container .sidebar footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   padding: 1rem;
 }
 
@@ -183,7 +190,7 @@ button {
     "header header"
     "thumbnails spotlight";
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 5rem auto;
+  grid-template-rows: 5vh 50vh;
   gap: 1rem;
   border-bottom: 2px solid var(--muted-text-color);
   padding: 2rem 0;
@@ -220,6 +227,7 @@ button {
 
 .image-gallery .spotlight img {
   width: 100%;
+  height: 100%;
 }
 
 .image-gallery .spotlight > p {
