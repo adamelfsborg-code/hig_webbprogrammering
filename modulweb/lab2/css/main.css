@@ -42,6 +42,12 @@ button {
   cursor: pointer;
 }
 
+button:has(i) {
+  background-color: transparent;
+  border: none;
+  color: var(--muted-text-color);
+}
+
 .container {
   display: grid;
   grid-template-areas:
@@ -64,12 +70,28 @@ button {
   z-index: 1;
 }
 
+.open-cart-button {
+  position: relative;
+}
+
+.open-cart-button::after {
+  content: attr(data-albums-in-cart);
+  position: absolute;
+  top: -5px;
+  right: 0;
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  font-size: 0.75em;
+  padding: 0 0.2rem;
+  border-radius: 100%;
+}
+
 .container .sidebar {
   visibility: hidden;
   position: fixed;
   top: 0;
   right: 0;
-  width: 20rem;
+  width: 30rem;
   transform: translateX(100%);
   height: 100vh;
   border-left: 1px solid var(--border-color);
@@ -136,7 +158,7 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  flex-grow: 1;
 }
 .container .sidebar .empty-cart img {
   margin: auto 0;
@@ -214,9 +236,15 @@ button {
   margin-bottom: 1rem;
 }
 
+.image-gallery .thumbnails img:hover,
 .image-gallery .thumbnails .active {
-  border: 2px solid var(--details-color);
+  outline: 2px solid var(--details-color);
 }
+
+.image-gallery .thumbnails img:hover {
+  scale: 1.1;
+}
+
 .image-gallery .spotlight {
   grid-area: spotlight;
   position: relative;
@@ -253,6 +281,7 @@ button {
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 2rem;
+  gap: 0.5rem;
 }
 
 .album-gallery .thumbnails img {
@@ -262,7 +291,11 @@ button {
 
 .album-gallery .thumbnails img:hover,
 .album-gallery .thumbnails .active {
-  border: 2px solid var(--details-color);
+  outline: 3px solid var(--details-color);
+}
+
+.album-gallery .thumbnails img:hover {
+  scale: 1.1;
 }
 
 .album-gallery article {

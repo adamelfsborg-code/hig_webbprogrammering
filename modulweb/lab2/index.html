@@ -4,6 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+      integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
     <link rel="stylesheet" href="css/main.css" />
     <script src="js/app.js" defer></script>
 
@@ -13,22 +21,34 @@
     <div class="container" data-container>
       <header class="navbar">
         <h1>Einstürzende Neubauten</h1>
-        <button data-open-cart>Öppna Varukorg</button>
+        <button
+          data-open-cart
+          data-albums-in-cart="0"
+          aria-label="Öppna Varukorg"
+          class="open-cart-button"
+        >
+          <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+        </button>
       </header>
       <aside class="sidebar" data-sidebar>
         <header>
           <h2>Varukorg</h2>
-          <button data-close-cart>X</button>
+          <button data-close-cart aria-label="Stäng Varukorg">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
         </header>
         <section class="cart-items" data-cart-items></section>
         <section class="empty-cart">
-          <img src="images/empty-cart.png" alt="Empty cart" />
+          <img src="images/empty-cart.webp" alt="Empty cart" />
         </section>
         <footer data-cart-footer></footer>
       </aside>
       <main>
         <section class="hero-section">
-          <img src="images/portrait-namn.png" />
+          <img
+            src="images/portrait-namn.webp"
+            alt="Poträttbild på hela bandet med deras namn givna"
+          />
           <p>
             Einstürzende Neubauten är ett tyskt experimentellt rockband som
             bildades i Västberlin 1980. Med sin unika blandning av industriella
@@ -43,48 +63,48 @@
           <h2>Bildgallerian</h2>
           <div class="thumbnails">
             <img
-              src="images/band1.jpg"
+              src="images/band1.webp"
               data-image-thumbnail
-              data-image-source="images/band1.jpg"
+              data-image-source="images/band1.webp"
               data-image-desc="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat illum ut officiis nesciunt tenetur aliquid minima asperiores fugit"
               data-image-alt="Band 1"
               alt="Band 1"
             />
             <img
-              src="images/band2.jpg"
+              src="images/band2.webp"
               data-image-thumbnail
-              data-image-source="images/band2.jpg"
+              data-image-source="images/band2.webp"
               data-image-desc="Donec sed pulvinar odio. Ut lectus quam, suscipit in porta non, aliquet vitae sapien. "
               data-image-alt="Band 2"
               alt="Band 2"
             />
             <img
-              src="images/band3.jpg"
+              src="images/band3.webp"
               data-image-thumbnail
-              data-image-source="images/band3.jpg"
+              data-image-source="images/band3.webp"
               data-image-desc="Phasellus eget laoreet nulla, quis iaculis ligula. Aliquam erat volutpat. Nunc varius nibh orci, quis venenatis purus porta sit amet. Vestibulum posuere bibendum neque, eu pellentesque ex bibendum a. Aliquam ut volutpat "
               data-image-alt="Band 3"
               alt="Band 3"
             />
             <img
-              src="images/band4.jpg"
+              src="images/band4.webp"
               data-image-thumbnail
-              data-image-source="images/band4.jpg"
+              data-image-source="images/band4.webp"
               data-image-desc="Pellentesque eget lacus id felis interdum fermentum ac at sem. "
               data-image-alt="Band 4"
               alt="band 4"
             />
             <img
-              src="images/band5.jpg"
+              src="images/band5.webp"
               data-image-thumbnail
-              data-image-source="images/band5.jpg"
+              data-image-source="images/band5.webp"
               data-image-desc="Cras magna nisl, rhoncus sit amet odio non, lacinia elementum massa. Suspendisse sollicitudin consequat elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. "
               data-image-alt="Band 5"
               alt="Band 5"
             />
           </div>
           <article class="spotlight" data-spotlight>
-            <img src="" data-spotlight-image />
+            <img data-spotlight-image />
             <p data-spotlight-desc></p>
           </article>
         </section>
@@ -92,41 +112,41 @@
           <h2>Albumgallerian</h2>
           <div class="thumbnails">
             <img
-              src="images/album1.jpg"
+              src="images/album1.webp"
               data-album-thumbnail
               data-album-title="Halber Mensch"
-              data-album-source="images/album1.jpg"
+              data-album-source="images/album1.webp"
               data-album-tracks="Halber Mensch,Fütter Mein Ego,Trinklied,Z.N.S,Seele Brennt,Sehnsucht,Der Tod Ist Ein Dandy,Leztes Biest,Sand,Das Schaben"
               data-album-year="1985"
               data-album-price="299"
               alt="Halber Mensch"
             />
             <img
-              src="images/album2.jpg"
+              src="images/album2.webp"
               data-album-thumbnail
               data-album-title="Ende Neu"
-              data-album-source="images/album2.jpg"
+              data-album-source="images/album2.webp"
               data-album-tracks="Was Ist Ist,Stella Maris,Die Explosion im Festpielhaus,Installation No. 1,NNNAAAMMM,Ende Neu,The Garden,Der Schacht von Babel"
               data-album-year="1996"
               data-album-price="89"
               alt="Ende Neu"
             />
             <img
-              src="images/album3.jpg"
+              src="images/album3.webp"
               data-album-thumbnail
               data-album-title="Silence Is Sexy"
-              data-album-source="images/album3.jpg"
+              data-album-source="images/album3.webp"
               data-album-tracks="Sabrina,Silence Is Sexy,In Circles,Newtons Gravitätlichkeit,Zampano,Heaven is of Honey,Beuty,Die Befindlichkeit des Landes,Sonnenbarke,Musentango,Alles,Redukt,Dingsaller,Total Eclipse of the Sun"
               data-album-year="2000"
               data-album-price="79"
               alt="Silence Is Sexy"
             />
             <img
-              src="images/album4.jpg"
+              src="images/album4.webp"
               data-album-thumbnail
               data-album-title="Kollaps"
-              data-album-source="images/album4.jpg"
-              data-album-tracks="Tanz Debil,Steh auf Berlin,Negativ Nein,U-Haft-Muzak,Draußen ist Feindlich,Schmerzen Hören,Jet'm,Kollaps,Sehnsucht,Vorm Krieg,Hirnsäge,Abstieg & Zerfall,Helga,Schießen ist Feindlich,Schmerzen Hören,Jet'm,Kollaps,Sehnsucht,Vorm Krieg,Hirnsäge,Abstieg & Zerfall,Rohrbombe,Futristischer,Sado-Masodub,Liebesub,Spionagedub,Mikrobendub,Gasterbeiterdub,Riveradub,Lünebest"
+              data-album-source="images/album4.webp"
+              data-album-tracks="Tanz Debil,Steh auf Berlin,Negativ Nein,U-Haft-Muzak,Draußen ist Feindlich,Schmerzen Hören,Jet'm,Kollaps,Sehnsucht,Vorm Krieg,Hirnsäge,Helga,Schmerzen Hören,Jet'm,Kollaps,Sehnsucht,Vorm Krieg,Hirnsäge,Abstieg & Zerfall,Rohrbombe,Futristischer,Sado-Masodub,Liebesub,Spionagedub,Mikrobendub,Gasterbeiterdub,Riveradub,Lünebest"
               data-album-year="1981"
               data-album-price="699"
               alt="Kollaps"
@@ -134,11 +154,7 @@
           </div>
           <article data-spotlight>
             <div class="album-cover">
-              <img
-                src="images/album1.jpg"
-                alt="Halber Mensch"
-                data-spotlight-image
-              />
+              <img data-spotlight-image />
               <aside>
                 <ol data-spotlight-tracks></ol>
               </aside>
@@ -150,7 +166,10 @@
               </hgroup>
               <div>
                 <p><span data-spotlight-price></span> kr</p>
-                <button data-add-album-to-cart>
+                <button
+                  data-add-album-to-cart
+                  aria-label="Lägg till i beställning"
+                >
                   Lägg till i beställningen
                 </button>
               </div>

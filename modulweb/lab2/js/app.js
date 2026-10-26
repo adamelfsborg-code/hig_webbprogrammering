@@ -1,3 +1,7 @@
+const MIN_ITEMS_FOR_DISCOUNT = 3;
+const DEFAULT_ACTIVE_IMAGE = 1;
+const DEFAULT_ACTIVE_ALBUM = 2;
+
 const sidebarHTML = document.querySelector("[data-sidebar]");
 const openCartHTML = document.querySelector("[data-open-cart]");
 const closeCartHTML = document.querySelector("[data-close-cart]");
@@ -26,15 +30,15 @@ const imageGallerySpotlightDescHTML = imageGallerySpotlightHTML.querySelector(
   "[data-spotlight-desc]",
 );
 
-const clearActiveChilNodes = (container) => {
-  const activeChils = container.querySelectorAll(".active");
-  for (const child of activeChils) {
+const clearActiveChildNodes = (container) => {
+  const activeChilds = container.querySelectorAll(".active");
+  for (const child of activeChilds) {
     child.classList.remove("active");
   }
 };
 
 const setActiveNode = (container, node) => {
-  clearActiveChilNodes(container);
+  clearActiveChildNodes(container);
   node.classList.add("active");
 };
 
@@ -50,16 +54,17 @@ const setImageInSpotlight = (dataset) => {
   imageGallerySpotlightImageHTML.alt = imageAlt;
 };
 
-for (const [key, item] of imageGalleryThumbnailsHTML.entries()) {
+for (const [index, item] of imageGalleryThumbnailsHTML.entries()) {
   item.addEventListener("click", handleImageClick);
 
-  if (key === 0) {
+  if (index === DEFAULT_ACTIVE_IMAGE) {
     setImageInSpotlight(item.dataset);
+    setActiveNode(imageGalleryHTML, item);
   }
 }
 
 const albumGalleryHTML = document.querySelector("[data-album-gallery]");
-const albumGalleryThumbnailsHTML = document.querySelectorAll(
+const albumGalleryThumbnailsHTML = albumGalleryHTML.querySelectorAll(
   "[data-album-thumbnail]",
 );
 
@@ -110,11 +115,12 @@ const setAlbumInSpotlight = (dataset) => {
   }
 };
 
-for (const [key, item] of albumGalleryThumbnailsHTML.entries()) {
+for (const [index, item] of albumGalleryThumbnailsHTML.entries()) {
   item.addEventListener("click", handleAlbumClick);
 
-  if (key === 0) {
+  if (index === DEFAULT_ACTIVE_ALBUM) {
     setAlbumInSpotlight(item.dataset);
+    setActiveNode(albumGalleryHTML, item);
   }
 }
 
@@ -131,7 +137,7 @@ addAlbumToCartHTML.addEventListener("click", () => {
       title: albumTitle,
       cover: albumSource,
       year: albumYear,
-      price: albumPrice,
+      price: Number(albumPrice),
       count: 1,
     };
     cart.push(album);
@@ -144,18 +150,19 @@ const reDrawCart = () => {
   cartItemsHTML.innerHTML = "";
   cartFooterHTML.innerHTML = "";
 
+  const sums = calculateCartSums(cart);
+  openCartHTML.setAttribute("data-albums-in-cart", sums.numberOfAlbums);
+
   if (cart.length === 0) return;
 
   /* CART ITEMS */
 
-  for (const [key, item] of cart.entries()) {
-    const itemHTML = getCartItemHTML(key, item);
+  for (const [index, item] of cart.entries()) {
+    const itemHTML = getCartItemHTML(index, item);
     cartItemsHTML.append(itemHTML);
   }
 
-  const clearCartHTML = document.createElement("button");
-  clearCartHTML.textContent = "Rensa varukorg";
-  clearCartHTML.addEventListener("click", () => {
+  const clearCartHTML = getButton("Rensa Varukorg", () => {
     cart = [];
     reDrawCart();
   });
@@ -163,82 +170,54 @@ const reDrawCart = () => {
 
   /* FOOTER */
 
-  const sums = calculateCartSums(cart);
   const sumsHTML = getCartSumsHTML(sums);
   cartFooterHTML.append(sumsHTML);
 
-  const continueCheckoutHTML = document.createElement("button");
+  const continueCheckoutHTML = getButton("Fortsätt med beställning", () => {});
   continueCheckoutHTML.disabled = true;
-  continueCheckoutHTML.textContent = "Fortsätt med beställning";
   cartFooterHTML.append(continueCheckoutHTML);
 };
 
-const getCartItemHTML = (pos, item) => {
+const getCartItemHTML = (index, item) => {
   const articleHTML = document.createElement("article");
-  articleHTML.id = pos;
+  articleHTML.id = index;
 
-  const itemHTML = document.createElement("div");
-  itemHTML.classList.add("item");
-
-  const deleteItemHTML = document.createElement("button");
-  deleteItemHTML.textContent = "X";
-
-  deleteItemHTML.addEventListener("click", () => {
-    changeItemCount(pos, "delete");
-  });
-
+  const itemHTML = getDiv(["item"]);
+  const deleteItemHTML = getButtonWithIcon(
+    "Minska antal",
+    ["fa-solid", "fa-xmark"],
+    () => setItemCount(index, 0),
+  );
   const albumCoverHTML = document.createElement("img");
   albumCoverHTML.src = item.cover;
+  albumCoverHTML.alt = item.title;
 
-  const infoHTML = document.createElement("div");
-  infoHTML.classList.add("info");
-
-  const titleHTML = document.createElement("h3");
-  titleHTML.textContent = item.title;
-
-  const yearHTML = document.createElement("p");
-  yearHTML.textContent = item.year;
-
-  const priceHTML = document.createElement("p");
-  priceHTML.textContent =
+  const infoHTML = getDiv(["info"]);
+  const titleHTML = getText("h3", item.title);
+  const yearHTML = getParagraph(item.year);
+  const priceHTML = getParagraph(
     item.count > 1
       ? `${item.price * item.count} kr (${item.price} kr/st)`
-      : `${item.price} kr`;
+      : `${item.price} kr`,
+  );
 
-  const countHTML = document.createElement("div");
-  countHTML.classList.add("count");
+  const countHTML = getDiv(["count"]);
+  const decreaseCountHTML = getButtonWithIcon(
+    "Minska antal",
+    ["fa-solid", "fa-circle-minus"],
+    () => setItemCount(index, item.count - 1),
+  );
+  const currentCountHTML = getText("span", item.count);
+  const increaseCountHTML = getButtonWithIcon(
+    "Öka antal",
+    ["fa-solid", "fa-circle-plus"],
+    () => setItemCount(index, item.count + 1),
+  );
 
-  const decreaseCountHTML = document.createElement("button");
-  decreaseCountHTML.textContent = "-";
-
-  decreaseCountHTML.addEventListener("click", () => {
-    changeItemCount(pos, "decreaase");
-  });
-
-  const currentCountHTML = document.createElement("span");
-  currentCountHTML.textContent = item.count;
-
-  const increaseCountHTML = document.createElement("button");
-  increaseCountHTML.textContent = "+";
-
-  increaseCountHTML.addEventListener("click", () => {
-    changeItemCount(pos, "increase");
-  });
-
-  infoHTML.append(titleHTML);
-  infoHTML.append(yearHTML);
-  infoHTML.append(priceHTML);
-
-  countHTML.append(decreaseCountHTML);
-  countHTML.append(currentCountHTML);
-  countHTML.append(increaseCountHTML);
-
-  itemHTML.append(deleteItemHTML);
-  itemHTML.append(albumCoverHTML);
-  itemHTML.append(infoHTML);
-
-  articleHTML.append(itemHTML);
-  articleHTML.append(countHTML);
+  infoHTML.append(titleHTML, yearHTML, priceHTML);
+  countHTML.append(decreaseCountHTML, currentCountHTML, increaseCountHTML);
+  itemHTML.append(deleteItemHTML, albumCoverHTML, infoHTML);
+  articleHTML.append(itemHTML, countHTML);
 
   return articleHTML;
 };
@@ -246,55 +225,75 @@ const getCartItemHTML = (pos, item) => {
 const calculateCartSums = (cart) => {
   const numberOfAlbums = cart.reduce((pre, cur) => pre + cur.count, 0);
   const preDiscount = cart.reduce((pre, cur) => pre + cur.price * cur.count, 0);
-  const discountDecimal = numberOfAlbums >= 3 ? 0.1 : 0;
-  const discount = Math.floor(preDiscount * discountDecimal);
+  const discountDecimal = numberOfAlbums >= MIN_ITEMS_FOR_DISCOUNT ? 0.1 : 0;
+  const discount = Math.round(preDiscount * discountDecimal);
   const totalsToPay = preDiscount - discount;
   return { numberOfAlbums, preDiscount, discount, totalsToPay };
 };
 
 const getCartSumsHTML = (sums) => {
   const sumsHTML = document.createElement("div");
-  const albumCountHTML = document.createElement("p");
-  albumCountHTML.textContent = `Antal album: ${sums.numberOfAlbums} st`;
 
-  const totalsPreDiscountHTML = document.createElement("p");
-  totalsPreDiscountHTML.textContent = `Summa före rabatt: ${sums.preDiscount} kr`;
+  const albumCountHTML = getParagraph(`Antal album: ${sums.numberOfAlbums} st`);
+  const totalsPreDiscountHTML = getParagraph(
+    sums.discount > 0 ? `Summa före rabatt: ${sums.preDiscount} kr` : "",
+  );
+  const totalDiscountHTML = getParagraph(
+    sums.discount > 0 ? `Rabatt (10 %): ${sums.discount} kr` : "",
+  );
+  const totalPostDiscountHTML = getParagraph(
+    `Totalt att betala: ${sums.totalsToPay} kr`,
+  );
 
-  const totalDiscountHTML = document.createElement("p");
-  totalDiscountHTML.textContent =
-    sums.discount > 0 ? `Rabatt (10 %): ${sums.discount} kr` : "";
-
-  const totalPostDiscountHTML = document.createElement("p");
-
-  totalPostDiscountHTML.textContent = `Totalt att betala: ${sums.totalsToPay} kr`;
-
-  sumsHTML.append(albumCountHTML);
-  sumsHTML.append(totalsPreDiscountHTML);
-  sumsHTML.append(totalDiscountHTML);
-  sumsHTML.append(totalPostDiscountHTML);
+  sumsHTML.append(
+    albumCountHTML,
+    totalsPreDiscountHTML,
+    totalDiscountHTML,
+    totalPostDiscountHTML,
+  );
   return sumsHTML;
 };
 
-const changeItemCount = (index, action) => {
-  switch (action) {
-    case "increase":
-      cart[index].count += 1;
-      break;
-    case "decreaase":
-      if (cart[index].count <= 1) {
-        deleteItemFromCart(index);
-        break;
-      }
-      cart[index].count -= 1;
-      break;
-    case "delete":
-      deleteItemFromCart(index);
-      break;
+const setItemCount = (index, count) => {
+  cart[index].count = count;
+  if (cart[index].count === 0) {
+    cart.splice(index, 1);
   }
-
   reDrawCart();
 };
 
-const deleteItemFromCart = (pos) => {
-  cart.splice(pos, 1);
+const getParagraph = (label) => {
+  return getText("p", label);
+};
+
+const getText = (element, label) => {
+  if (!["h1", "h2", "h3", "h4", "h5", "h6", "p", "span"].includes(element))
+    return;
+  const el = document.createElement(element);
+  el.textContent = label;
+  return el;
+};
+
+const getDiv = (cls) => {
+  const div = document.createElement("div");
+  div.classList.add(...cls);
+  return div;
+};
+
+const getButton = (label, cb) => {
+  const buttonHTML = document.createElement("button");
+  buttonHTML.textContent = label;
+  buttonHTML.ariaLabel = label;
+  buttonHTML.addEventListener("click", cb);
+  return buttonHTML;
+};
+
+const getButtonWithIcon = (label, cls, cb) => {
+  const buttonHTML = getButton(label, cb);
+  buttonHTML.textContent = "";
+  const iconHTML = document.createElement("i");
+  iconHTML.classList.add(...cls);
+  iconHTML.ariaHidden = true;
+  buttonHTML.append(iconHTML);
+  return buttonHTML;
 };
