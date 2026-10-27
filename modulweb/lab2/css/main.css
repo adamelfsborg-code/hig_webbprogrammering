@@ -46,14 +46,6 @@ button {
   padding: 0.5rem 1rem;
   border-radius: 20px;
 }
-
-button.primary:disabled {
-  cursor: not-allowed;
-  opacity: 0.55;
-  border: 1px solid var(--muted-text-color);
-  color: var(--muted-text-color);
-}
-
 button:hover {
   background-color: var(--background-color);
 }
@@ -68,12 +60,24 @@ button.primary {
   border: 1px solid var(--accent-color);
 }
 
+button.primary:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  border: 1px solid var(--muted-text-color);
+  color: var(--muted-text-color);
+}
+
 button:has(i) {
   background-color: transparent;
   border: none;
   color: var(--muted-text-color);
   padding: 0;
   border-radius: 0;
+}
+
+button:has(i):hover {
+  background-color: transparent;
+  color: var(--text-color);
 }
 
 .container .navbar {
@@ -296,7 +300,6 @@ button:has(i) {
   display: block;
   cursor: pointer;
   border-radius: 20px;
-  break-inside: avoid;
   margin-bottom: 1rem;
 }
 
