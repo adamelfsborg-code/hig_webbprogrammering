@@ -47,17 +47,20 @@ button {
   border-radius: 20px;
 }
 
-button:disabled {
+button.primary:disabled {
   cursor: not-allowed;
-  opacity: 0.75;
+  opacity: 0.55;
+  border: 1px solid var(--muted-text-color);
+  color: var(--muted-text-color);
 }
 
 button:hover {
   background-color: var(--background-color);
 }
 
-button:focus {
-  outline: 1px solid var(--details-color);
+button:focus-visible {
+  outline: 2px solid var(--details-color);
+  outline-offset: 2px;
 }
 
 button.primary {
@@ -74,7 +77,6 @@ button:has(i) {
 }
 
 .container .navbar {
-  grid-area: header;
   position: sticky;
   top: 0;
   border-bottom: 1px solid var(--border-color);
@@ -240,7 +242,6 @@ button:has(i) {
 }
 
 .container main {
-  grid-area: main;
   height: auto;
   padding-inline: 1rem;
 }
@@ -309,7 +310,6 @@ button:has(i) {
 }
 
 .image-gallery .spotlight {
-  grid-area: spotlight;
   position: relative;
   border-radius: 20px;
   overflow: hidden;
@@ -372,7 +372,6 @@ button:has(i) {
   object-fit: cover;
   display: block;
   cursor: pointer;
-  break-inside: avoid;
 }
 
 .album-gallery .thumbnails img:hover,
@@ -427,4 +426,8 @@ button:has(i) {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.album-gallery .info button {
+  margin-top: 1rem;
 }
