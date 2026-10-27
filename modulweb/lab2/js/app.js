@@ -246,31 +246,52 @@ const calculateCartSums = (cart) => {
 const getCartSumsHTML = (sums) => {
   const sumsHTML = document.createElement("div");
 
-  const albumCountHTML = getParagraph(`Antal album: ${sums.numberOfAlbums} st`);
-  const totalsPreDiscountHTML = getParagraph(
-    `Summa före rabatt: ${sums.preDiscount} kr`,
+  const albumCountHTML = getWrappingElement(
+    "p",
+    [],
+    getText("span", "Antal album:"),
+    getText("span", `${sums.numberOfAlbums} st`),
   );
-  const totalDiscountHTML = getParagraph(
-    `Rabatt (${DISCOUNT_DECIMAL * 100} %): ${sums.discount} kr`,
-  );
-  const totalPostDiscountHTML = getParagraph(
-    `Totalt att betala: ${sums.totalsToPay} kr`,
-  );
-
-  const discountHelpMessageHTML = getText(
-    "span",
-    sums.albumsLeftToDiscount > 0
-      ? `Få 10% rabatt vid köp av 3 st album (${sums.albumsLeftToDiscount} st kvar)`
-      : "",
+  const totalsPreDiscountHTML = getWrappingElement(
+    "p",
+    [],
+    getText("span", "Summa före rabatt:"),
+    getText("span", `${sums.preDiscount} kr`),
   );
 
-  sumsHTML.append(
+  const discountPercentage = DISCOUNT_DECIMAL * 100;
+  const totalDiscountHTML = getWrappingElement(
+    "p",
+    [],
+    getText("span", `Rabatt (${discountPercentage} %):`),
+    getText("span", ` ${sums.discount} kr`),
+  );
+  const totalPostDiscountHTML = getWrappingElement(
+    "p",
+    ["total-to-pay"],
+    getText("span", `Totalt att betala:`),
+    getText("span", `${sums.totalsToPay} kr`),
+  );
+
+  if (sums.albumsLeftToDiscount > 0) {
+    const discountHelpMessageHTML = getText(
+      "span",
+      `Få ${discountPercentage}% rabatt vid köp av minst ${MIN_ITEMS_FOR_DISCOUNT} st album (${sums.albumsLeftToDiscount} st kvar)`,
+    );
+    sumsHTML.append(discountHelpMessageHTML);
+  }
+
+  const summaryCardHTML = getWrappingElement(
+    "div",
+    ["cart-summary-card"],
     albumCountHTML,
     totalsPreDiscountHTML,
     totalDiscountHTML,
     totalPostDiscountHTML,
-    discountHelpMessageHTML,
   );
+
+  sumsHTML.append(summaryCardHTML);
+
   return sumsHTML;
 };
 
@@ -287,12 +308,16 @@ const getParagraph = (label) => {
 };
 
 const getText = (element, label) => {
-  if (!["h1", "h2", "h3", "h4", "h5", "h6", "p", "span"].includes(element))
-    element = "p";
-
   const el = document.createElement(element);
-  el.textContent = label;
+  el.innerHTML = label;
   return el;
+};
+
+const getWrappingElement = (parent, cls, ...children) => {
+  const parentHTML = document.createElement(parent);
+  parentHTML.classList.add(...cls);
+  parentHTML.append(...children);
+  return parentHTML;
 };
 
 const getDiv = (cls) => {
