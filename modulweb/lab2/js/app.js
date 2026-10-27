@@ -224,13 +224,19 @@ const getCartItemHTML = (index, item) => {
 
 const calculateCartSums = (cart) => {
   const numberOfAlbums = cart.reduce((pre, cur) => pre + cur.count, 0);
+  const albumsLeftToDiscount = Math.max(
+    MIN_ITEMS_FOR_DISCOUNT - numberOfAlbums,
+    0,
+  );
   const preDiscount = cart.reduce((pre, cur) => pre + cur.price * cur.count, 0);
   const discountDecimal =
     numberOfAlbums >= MIN_ITEMS_FOR_DISCOUNT ? DISCOUNT_DECIMAL : 0;
+
   const discount = Math.round(preDiscount * discountDecimal);
   const totalsToPay = preDiscount - discount;
   return {
     numberOfAlbums,
+    albumsLeftToDiscount,
     preDiscount,
     discount,
     totalsToPay,
@@ -242,15 +248,20 @@ const getCartSumsHTML = (sums) => {
 
   const albumCountHTML = getParagraph(`Antal album: ${sums.numberOfAlbums} st`);
   const totalsPreDiscountHTML = getParagraph(
-    sums.discount > 0 ? `Summa före rabatt: ${sums.preDiscount} kr` : "",
+    `Summa före rabatt: ${sums.preDiscount} kr`,
   );
   const totalDiscountHTML = getParagraph(
-    sums.discount > 0
-      ? `Rabatt ({${DISCOUNT_DECIMAL * 100}} %): ${sums.discount} kr`
-      : "",
+    `Rabatt (${DISCOUNT_DECIMAL * 100} %): ${sums.discount} kr`,
   );
   const totalPostDiscountHTML = getParagraph(
     `Totalt att betala: ${sums.totalsToPay} kr`,
+  );
+
+  const discountHelpMessageHTML = getText(
+    "span",
+    sums.albumsLeftToDiscount > 0
+      ? `Få 10% rabatt vid köp av 3 st album (${sums.albumsLeftToDiscount} st kvar)`
+      : "",
   );
 
   sumsHTML.append(
@@ -258,6 +269,7 @@ const getCartSumsHTML = (sums) => {
     totalsPreDiscountHTML,
     totalDiscountHTML,
     totalPostDiscountHTML,
+    discountHelpMessageHTML,
   );
   return sumsHTML;
 };
