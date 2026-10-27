@@ -163,7 +163,7 @@ const reDrawCart = () => {
     cartItemsHTML.append(itemHTML);
   }
 
-  const clearCartHTML = getButton("Rensa Varukorg", () => {
+  const clearCartHTML = getButton("Rensa Varukorg", [], () => {
     cart = [];
     reDrawCart();
   });
@@ -174,7 +174,11 @@ const reDrawCart = () => {
   const sumsHTML = getCartSumsHTML(sums);
   cartFooterHTML.append(sumsHTML);
 
-  const continueCheckoutHTML = getButton("Fortsätt med beställning", () => {});
+  const continueCheckoutHTML = getButton(
+    "Fortsätt med beställning",
+    ["primary"],
+    () => {},
+  );
   continueCheckoutHTML.disabled = true;
   cartFooterHTML.append(continueCheckoutHTML);
 };
@@ -309,7 +313,7 @@ const getParagraph = (label) => {
 
 const getText = (element, label) => {
   const el = document.createElement(element);
-  el.innerHTML = label;
+  el.textContent = label;
   return el;
 };
 
@@ -326,15 +330,16 @@ const getDiv = (cls) => {
   return div;
 };
 
-const getButton = (label, cb) => {
+const getButton = (label, cls, cb) => {
   const buttonHTML = document.createElement("button");
   buttonHTML.textContent = label;
+  buttonHTML.classList.add(...cls);
   buttonHTML.addEventListener("click", cb);
   return buttonHTML;
 };
 
 const getButtonWithIcon = (label, cls, cb) => {
-  const buttonHTML = getButton(label, cb);
+  const buttonHTML = getButton(label, [], cb);
   buttonHTML.ariaLabel = label;
   buttonHTML.textContent = "";
   const iconHTML = document.createElement("i");

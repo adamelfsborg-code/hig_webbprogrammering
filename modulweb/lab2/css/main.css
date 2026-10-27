@@ -40,12 +40,37 @@ button {
   font-style: normal;
   font-size: 1em;
   cursor: pointer;
+  background-color: var(--surface-color);
+  border: 1px solid var(--muted-text-color);
+  color: var(--muted-text-color);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+button:hover {
+  background-color: var(--background-color);
+}
+
+button:focus {
+  outline: 1px solid var(--details-color);
+}
+
+button.primary {
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
 }
 
 button:has(i) {
   background-color: transparent;
   border: none;
   color: var(--muted-text-color);
+  padding: 0;
+  border-radius: 0;
 }
 
 .container .navbar {
@@ -91,7 +116,8 @@ button:has(i) {
   position: fixed;
   top: 0;
   right: 0;
-  width: 30rem;
+  width: 100%;
+  max-width: 30rem;
   transform: translateX(100%);
   height: 100vh;
   border-left: 1px solid var(--border-color);
@@ -225,7 +251,7 @@ button:has(i) {
   justify-content: center;
   align-items: center;
   border-bottom: 2px solid var(--muted-text-color);
-  height: 80vh;
+  padding: 2rem 0;
 }
 
 .hero-section img {
@@ -291,7 +317,7 @@ button:has(i) {
   aspect-ratio: 3/2;
   margin-inline: auto;
   width: 100%;
-  max-width: 75rem;
+  max-width: 50rem;
   margin-bottom: 1rem;
 }
 
@@ -327,13 +353,13 @@ button:has(i) {
 
 .album-gallery .thumbnails {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
 }
 
 @media only screen and (max-width: 800px) {
   .album-gallery .thumbnails {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
   .album-gallery article {
@@ -343,7 +369,6 @@ button:has(i) {
 
 .album-gallery .thumbnails img {
   width: 100%;
-  aspect-ratio: 4/3;
   object-fit: cover;
   display: block;
   cursor: pointer;
