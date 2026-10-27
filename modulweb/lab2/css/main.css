@@ -86,6 +86,10 @@ button:has(i) {
   border-radius: 100%;
 }
 
+.open-cart-button[data-albums-in-cart="0"]::after {
+  display: none;
+}
+
 .container .sidebar {
   visibility: hidden;
   position: fixed;

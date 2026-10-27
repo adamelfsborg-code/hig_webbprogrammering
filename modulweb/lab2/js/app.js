@@ -1,6 +1,7 @@
 const MIN_ITEMS_FOR_DISCOUNT = 3;
-const DEFAULT_ACTIVE_IMAGE = 1;
-const DEFAULT_ACTIVE_ALBUM = 2;
+const DISCOUNT_DECIMAL = 0.1;
+const DEFAULT_ACTIVE_IMAGE_INDEX = 1;
+const DEFAULT_ACTIVE_ALBUM_INDEX = 2;
 
 const sidebarHTML = document.querySelector("[data-sidebar]");
 const openCartHTML = document.querySelector("[data-open-cart]");
@@ -57,7 +58,7 @@ const setImageInSpotlight = (dataset) => {
 for (const [index, item] of imageGalleryThumbnailsHTML.entries()) {
   item.addEventListener("click", handleImageClick);
 
-  if (index === DEFAULT_ACTIVE_IMAGE) {
+  if (index === DEFAULT_ACTIVE_IMAGE_INDEX) {
     setImageInSpotlight(item.dataset);
     setActiveNode(imageGalleryHTML, item);
   }
@@ -118,7 +119,7 @@ const setAlbumInSpotlight = (dataset) => {
 for (const [index, item] of albumGalleryThumbnailsHTML.entries()) {
   item.addEventListener("click", handleAlbumClick);
 
-  if (index === DEFAULT_ACTIVE_ALBUM) {
+  if (index === DEFAULT_ACTIVE_ALBUM_INDEX) {
     setAlbumInSpotlight(item.dataset);
     setActiveNode(albumGalleryHTML, item);
   }
@@ -151,7 +152,7 @@ const reDrawCart = () => {
   cartFooterHTML.innerHTML = "";
 
   const sums = calculateCartSums(cart);
-  openCartHTML.setAttribute("data-albums-in-cart", sums.numberOfAlbums);
+  openCartHTML.dataset.albumsInCart = sums.numberOfAlbums;
 
   if (cart.length === 0) return;
 
@@ -180,11 +181,10 @@ const reDrawCart = () => {
 
 const getCartItemHTML = (index, item) => {
   const articleHTML = document.createElement("article");
-  articleHTML.id = index;
 
   const itemHTML = getDiv(["item"]);
   const deleteItemHTML = getButtonWithIcon(
-    "Minska antal",
+    "Ta bort",
     ["fa-solid", "fa-xmark"],
     () => setItemCount(index, 0),
   );
@@ -225,10 +225,16 @@ const getCartItemHTML = (index, item) => {
 const calculateCartSums = (cart) => {
   const numberOfAlbums = cart.reduce((pre, cur) => pre + cur.count, 0);
   const preDiscount = cart.reduce((pre, cur) => pre + cur.price * cur.count, 0);
-  const discountDecimal = numberOfAlbums >= MIN_ITEMS_FOR_DISCOUNT ? 0.1 : 0;
+  const discountDecimal =
+    numberOfAlbums >= MIN_ITEMS_FOR_DISCOUNT ? DISCOUNT_DECIMAL : 0;
   const discount = Math.round(preDiscount * discountDecimal);
   const totalsToPay = preDiscount - discount;
-  return { numberOfAlbums, preDiscount, discount, totalsToPay };
+  return {
+    numberOfAlbums,
+    preDiscount,
+    discount,
+    totalsToPay,
+  };
 };
 
 const getCartSumsHTML = (sums) => {
@@ -239,7 +245,9 @@ const getCartSumsHTML = (sums) => {
     sums.discount > 0 ? `Summa före rabatt: ${sums.preDiscount} kr` : "",
   );
   const totalDiscountHTML = getParagraph(
-    sums.discount > 0 ? `Rabatt (10 %): ${sums.discount} kr` : "",
+    sums.discount > 0
+      ? `Rabatt ({${DISCOUNT_DECIMAL * 100}} %): ${sums.discount} kr`
+      : "",
   );
   const totalPostDiscountHTML = getParagraph(
     `Totalt att betala: ${sums.totalsToPay} kr`,
@@ -268,7 +276,8 @@ const getParagraph = (label) => {
 
 const getText = (element, label) => {
   if (!["h1", "h2", "h3", "h4", "h5", "h6", "p", "span"].includes(element))
-    return;
+    element = "p";
+
   const el = document.createElement(element);
   el.textContent = label;
   return el;
@@ -283,13 +292,13 @@ const getDiv = (cls) => {
 const getButton = (label, cb) => {
   const buttonHTML = document.createElement("button");
   buttonHTML.textContent = label;
-  buttonHTML.ariaLabel = label;
   buttonHTML.addEventListener("click", cb);
   return buttonHTML;
 };
 
 const getButtonWithIcon = (label, cls, cb) => {
   const buttonHTML = getButton(label, cb);
+  buttonHTML.ariaLabel = label;
   buttonHTML.textContent = "";
   const iconHTML = document.createElement("i");
   iconHTML.classList.add(...cls);
