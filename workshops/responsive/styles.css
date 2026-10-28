@@ -1,0 +1,69 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #eef3f7;
+  color: #172b3b;
+}
+
+.page {
+  width: 980px;
+  margin: 0 auto;
+  background: white;
+  border: 1px dotted grey;
+  padding: 28px;
+}
+
+header {
+  background: #006da8;
+  color: white;
+  padding: 20px;
+}
+
+nav {
+  display: flex;
+  gap: 8px;
+  margin-block: 15px;
+}
+
+nav a {
+  color: white;
+  background: #00517f;
+  padding: 4px 7px;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 44px;
+}
+
+.small {
+  width: 120px;
+  height: auto;
+}
+
+.band_image {
+  width: 900px;
+  height: 250px;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 24px;
+}
+
+.article {
+}
+
+.note {
+  background: #e3f3ff;
+  padding: 15px;
+}
+
+.album {
+  padding: 12px;
+}
