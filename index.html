@@ -14,14 +14,14 @@
             <a href="/" class="active">~/README.md</a>
           </li>
           <li><a href="/workshops/">~/workshops</a></li>
-          <li><a href="modulweb/lab1/">~/laborationer</a></li>
+          <li><a href="modulweb/">~/laborationer</a></li>
         </ul>
       </nav>
     </header>
     <main>
       <section class="hero-section">
-        <article class="text-editor">
-          <aside class="text-editor-sidebar">
+        <article class="text-editor" data-text-editor>
+          <aside class="text-editor-sidebar" data-text-editor-sidebar>
             <h2>Explorer</h2>
             <details open>
               <summary>workshops</summary>
@@ -30,19 +30,111 @@
                 <a class="file" data-ext="html">index.html</a>
               </details>
             </details>
-            <a class="file" data-ext="git">.gitignore</a>
-            <a class="file active" data-ext="md">.README.md</a>
+            <details>
+              <summary>laborationer</summary>
+              <details data-preview-path="./modulweb/lab1/">
+                <summary>lab1</summary>
+                <details>
+                  <summary>css</summary>
+                  <a
+                    class="file"
+                    data-ext="css"
+                    data-preview-type="remote"
+                    data-file-path="./modulweb/lab1/css/main.css"
+                    >main.css</a
+                  >
+                  <a
+                    class="file"
+                    data-ext="css"
+                    data-preview-type="remote"
+                    data-file-path="./modulweb/lab1/css/variables.css"
+                    >variables.css</a
+                  >
+                </details>
+                <details>
+                  <summary>js</summary>
+                  <a
+                    class="file"
+                    data-ext="js"
+                    data-preview-type="remote"
+                    data-file-path="./modulweb/lab1/js/app.js"
+                    >app.js</a
+                  >
+                </details>
+                <a
+                  class="file"
+                  data-ext="html"
+                  data-preview-type="remote"
+                  data-file-path="./modulweb/lab1/index.html"
+                  >index.html</a
+                >
+              </details>
+              <details data-preview-path="./modulweb/lab2/">
+                <summary>lab2</summary>
+                <details>
+                  <summary>css</summary>
+                  <a
+                    class="file"
+                    data-ext="css"
+                    data-preview-type="remote"
+                    data-file-path="./modulweb/lab2/css/main.css"
+                    >main.css</a
+                  >
+                  <a
+                    class="file"
+                    data-ext="css"
+                    data-preview-type="remote"
+                    data-file-path="./modulweb/lab2/css/variables.css"
+                    >variables.css</a
+                  >
+                </details>
+                <details>
+                  <summary>js</summary>
+                  <a
+                    class="file"
+                    data-ext="js"
+                    data-preview-type="remote"
+                    data-file-path="./modulweb/lab2/js/app.js"
+                    >app.js</a
+                  >
+                </details>
+                <a
+                  class="file"
+                  data-ext="html"
+                  data-preview-type="remote"
+                  data-file-path="./modulweb/lab2/index.html"
+                  >index.html</a
+                >
+              </details>
+            </details>
+            <a
+              class="file"
+              data-ext="git"
+              data-preview-type="file"
+              data-file-path=".gitignore"
+              >.gitignore</a
+            >
+            <a
+              class="file active"
+              data-ext="md"
+              data-file-path="./README.md"
+              data-preview-type="readme"
+              >.README.md</a
+            >
           </aside>
-          <header class="text-editor-toolbar">
+          <header class="text-editor-toolbar" data-text-editor-toolbar>
             <nav>
               <ul>
-                <li><a href="#" class="active">README.md</a></li>
-                <li><a href="#">.gitignore</a></li>
+                <li class="active">README.md</li>
+                <li>.gitignore</li>
               </ul>
             </nav>
           </header>
           <pre class="text-editor-workspace" data-text-editor-workspace></pre>
-          <div class="text-editor-preview-wrapper">
+          <div
+            class="text-editor-preview-wrapper"
+            data-text-editor-preview-wrapper
+          >
             <div class="text-editor-preview-banner">
               <h2>Preview</h2>
             </div>

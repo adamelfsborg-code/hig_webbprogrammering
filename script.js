@@ -1,5 +1,73 @@
 let workspaceHTML = document.querySelector("[data-text-editor-workspace]");
 let previewHTML = document.querySelector("[data-text-editor-preview]");
+let sidebarHTML = document.querySelector("[data-text-editor-sidebar]");
+let previewWrapperHTML = document.querySelector(
+  "[data-text-editor-preview-wrapper]",
+);
+let textEditorHTML = document.querySelector("[data-text-editor]");
+let toolbarHTML = document.querySelector("[data-text-editor-toolbar]");
+
+const sidebarFilesHTML = sidebarHTML.querySelectorAll("[data-preview-type]");
+
+for (const file of sidebarFilesHTML) {
+  file.addEventListener("click", async (e) => {
+    handleFileClick(sidebarHTML, e);
+    workspaceHTML.textContent = "";
+    previewHTML.textContent = "";
+
+    const previewType = e.target.dataset.previewType;
+    const filePath = e.target.dataset.filePath;
+    const fileContents = await readTextFile(filePath);
+
+    if (previewType === "readme") {
+      textEditorHTML.classList.remove("no-preview");
+      const lines = fileContents.split("\n");
+      typeMarkdownInTextEditor(lines);
+      return;
+    }
+
+    if (previewType === "file") {
+      textEditorHTML.classList.add("no-preview");
+      workspaceHTML.textContent = fileContents;
+      previewHTML.textContent = fileContents;
+      return;
+    }
+
+    if (previewType === "remote") {
+      textEditorHTML.classList.remove("no-preview");
+      workspaceHTML.textContent = fileContents;
+      let current = e.target;
+      while (!current.dataset.previewPath) {
+        current = current.parentElement;
+      }
+      const previewPath = current.dataset.previewPath;
+
+      const frame = document.createElement("iframe");
+      frame.src = previewPath;
+      frame.height = "100%";
+      frame.width = "100%";
+
+      previewHTML.append(frame);
+      return;
+    }
+  });
+}
+
+const toolbarFilesHTML = toolbarHTML.querySelectorAll("li");
+
+for (const file of toolbarFilesHTML) {
+  file.addEventListener("click", (e) => {
+    handleFileClick(toolbarHTML, e);
+  });
+}
+
+const handleFileClick = (container, e) => {
+  const files = container.querySelectorAll(".active");
+  for (const f of files) {
+    f.classList.remove("active");
+  }
+  e.target.classList.add("active");
+};
 
 const readTextFile = async (path) => {
   const readme = await fetch(path);
@@ -72,4 +140,3 @@ function inline(text) {
     .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
     .replace(/\*(.+?)\*/g, "<em>$1</em>");
 }
-
