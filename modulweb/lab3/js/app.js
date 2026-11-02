@@ -49,5 +49,9 @@ menuToggleHTML.addEventListener("click", () => {
   setOpen(!open);
 });
 
+menuHTML.addEventListener("click", (e) => {
+  if (e.target.closest("a")) setOpen(false);
+});
+
 menuToggleHTML.hidden = false;
 setOpen(false);

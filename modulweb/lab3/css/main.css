@@ -557,7 +557,6 @@ a.button {
 
 .info-grid {
   display: grid;
-  grid-template-areas: "info";
   grid-template-columns: 1fr;
   gap: 1rem;
 }
