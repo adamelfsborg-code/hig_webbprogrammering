@@ -1,0 +1,22 @@
+:root {
+  /* Bakgrunder */
+  --color-bg: #0f0e17; /* sidans bakgrund */
+  --color-bg-footer: #16151f; /* sidfoten */
+  --color-surface: #1b1a27; /* kort, mobilmeny */
+
+  /* Linjer och kanter */
+  --color-divider: #2a2938; /* skiljelinjer i mobilmenyn */
+  --color-border: #3a3950; /* Lördag-knappen, grå linjer i Praktisk info */
+
+  /* Text */
+  --color-text: #fffffe; /* rubriker, huvudtext */
+  --color-text-secondary: #cfcfe0; /* ingress, menylänkar */
+  --color-text-muted: #a7a9be; /* beskrivningar i korten */
+
+  /* Accent */
+  --color-accent: #ff8906; /* eyebrow, tider, ikoner, HUVUDARTIST-märket */
+  --color-on-accent: #0f0e17; /* text på orange eller vit bakgrund */
+
+  /* Halvgenomskinlig etikett ovanpå bilder */
+  --color-overlay: rgb(15 14 23 / 0.7);
+}
