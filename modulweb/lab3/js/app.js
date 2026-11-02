@@ -44,9 +44,10 @@ const setOpen = (open) => {
   menuToggleHTML.setAttribute("aria-label", open ? "Stäng meny" : "Öppna meny");
 };
 
-menuToggleHTML.hidden = false;
-
 menuToggleHTML.addEventListener("click", () => {
   const open = menuToggleHTML.getAttribute("aria-expanded") === "true";
   setOpen(!open);
 });
+
+menuToggleHTML.hidden = false;
+setOpen(false);

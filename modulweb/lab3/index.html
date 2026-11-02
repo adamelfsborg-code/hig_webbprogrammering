@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GMF27</title>
+    <title>Gävle Music Festival 2027</title>
 
     <link rel="stylesheet" href="css/main.css" />
     <script src="js/app.js" defer></script>
@@ -11,22 +11,6 @@
   <body>
     <header>
       <a class="logo" href="#">GMF<span>27</span></a>
-
-      <!--
-
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
-          fill="currentColor"
-          viewBox="0 0 256 256"
-        >
-          <path
-            d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"
-          ></path>
-        </svg>
-
--->
       <button
         class="menu-toggle"
         aria-expanded="true"
@@ -39,6 +23,7 @@
           fill="currentColor"
           viewBox="0 0 256 256"
           class="icon-open"
+          aria-hidden="true"
         >
           <path
             d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"
@@ -49,6 +34,7 @@
           fill="currentColor"
           viewBox="0 0 256 256"
           class="icon-close"
+          aria-hidden="true"
         >
           <path
             d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"
@@ -73,12 +59,12 @@
           <div>
             <p class="eyebrow">
               <span class="mobile">
-                <time datetime="2027-08-06">6</time>-
+                <time datetime="2027-08-06">6</time>–
                 <time datetime="2027-08-07">7 aug 2027</time>
                 · Gävle
               </span>
               <span class="desktop">
-                <time datetime="2027-08-06">6</time>-
+                <time datetime="2027-08-06">6</time>–
                 <time datetime="2027-08-07">7 augusti 2027</time>
                 · Boulognerskogen, Gävle
               </span>
@@ -92,7 +78,9 @@
         </div>
         <figure>
           <img src="images/frame-4.png" alt="Bild på Boulognerskogen" />
-          <a type="button" href="/">Köp biljett</a>
+          <a class="button" href="https://gavlemusicfestival.se/biljetter"
+            >Köp biljett</a
+          >
         </figure>
       </section>
       <section class="highlights" id="hojdpunkter">
@@ -114,7 +102,10 @@
             </div>
           </article>
           <article>
-            <img src="images/frame-3.png" alt="Bandet ler alldels för mycket" />
+            <img
+              src="images/frame-3.png"
+              alt="Bandet ler alldeles för mycket"
+            />
             <div>
               <h3>The Gävle Brass</h3>
               <p class="eyebrow">
@@ -232,7 +223,7 @@
           <article>
             <img
               src="images/frame-2.png"
-              alt="Elektroniken strular allldels innan matchstart"
+              alt="Elektroniken strular alldeles innan matchstart"
             />
             <div>
               <h3>Norrsken Collective</h3>
@@ -247,7 +238,7 @@
         </div>
       </section>
       <section class="info" id="info">
-        <h2>Pratisk info</h2>
+        <h2>Praktisk info</h2>
         <div class="info-grid">
           <section>
             <h3>
@@ -263,7 +254,7 @@
               </svg>
               Plats
             </h3>
-            <p>Boulognerskogen, Gävle. Entrè via Södra Kungsgatan</p>
+            <p>Boulognerskogen, Gävle. Entré via Södra Kungsgatan</p>
           </section>
           <section>
             <h3>
